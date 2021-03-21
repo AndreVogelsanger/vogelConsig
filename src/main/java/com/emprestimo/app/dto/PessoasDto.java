@@ -5,6 +5,6 @@ import lombok.Data;
 
 @Data
 @Builder
-public class ClienteDto {
+public class PessoasDto {
     private String nome;
 }
