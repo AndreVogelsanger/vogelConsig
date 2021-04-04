@@ -30,7 +30,7 @@ public class Controller {
     }
 
     @GetMapping("/v1/NumBeneficio")
-    public String getNumBeneficio(String numbeneficio){
+    public String getNumBeneficio(String numbeneficio) {
         var dto = PessoaDto.builder().numbeneficio(numbeneficio).build();
         return pessoaProcessor.getNumBeneficio(dto).toString();
     }
@@ -41,8 +41,8 @@ public class Controller {
     }
 
     @PostMapping("/v1/ClienteNovo")
-    public String PostClienteNovo(String NOME, String CPF, String NUMBENEFICIO, BigDecimal RENDA, Date DATA_NASCIMENTO, String ENDERECO
-              , String CEP, String UF, String CIDADE, String EMAIL, String CELULAR, String TELEFONE){
+    public String PostClienteNovo (String NOME, String CPF, String NUMBENEFICIO, BigDecimal RENDA, Date DATA_NASCIMENTO, String ENDERECO
+            , String CEP, String UF, String CIDADE, String EMAIL, String CELULAR, String TELEFONE){
         var dto = PessoaDto.builder()
                 .nome(NOME)
                 .cpf(CPF)
