@@ -2,12 +2,16 @@ package com.emprestimo.app.repository;
 
 import com.emprestimo.app.Scripty.PessoaSQL;
 import com.emprestimo.app.config.DataBaseConfig;
+import com.emprestimo.app.dto.PessoaDto;
 import com.emprestimo.app.model.Pessoa;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementSetter;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.math.BigDecimal;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 
@@ -100,26 +104,18 @@ public class PessoaRepository {
                                 .TELEFONE(rs.getString("TELEFONE"))
                                 .build());
     }
+    // LER DOCUMENTAÇÃO DO JDBCTEPLATE PARA ENTEDER OS METODOS A SEREM APLICADOS
+    // DOCUMENTAÇÃO DO W3 - ARQUITETURA WEB
+    public void postClienteNovo(Pessoa pessoa){
+         jdbcTemplate.update(PessoaSQL.SQL_INSERT_PESSOA.getValue(),
+                new PreparedStatementSetter(){
+                    public void setValues(PreparedStatement ps) throws SQLException {
+                        ps.setString(1, pessoa.getNOME());
+                        ps.setString(2, pessoa.getCPF());
+                        ps.setString(3, pessoa.getNUMBENEFICIO());
+                    }
+                });
 
-    public Pessoa postClienteNovo(String NOME, String CPF, String NUMBENEFICIO, BigDecimal RENDA, Date DATA_NASCIMENTO, String ENDERECO
-            , String CEP, String UF, String CIDADE, String EMAIL, String CELULAR, String TELEFONE){
-        return (Pessoa) jdbcTemplate.queryForObject(PessoaSQL.SQL_INSERT_PESSOA.getValue(), new Object[]{NOME,CPF,NUMBENEFICIO,RENDA,DATA_NASCIMENTO,ENDERECO
-                        ,CEP,UF, CIDADE,EMAIL,CELULAR,TELEFONE},
-                (rs, rowNum) ->
-                        Pessoa.builder()
-                                .NOME(rs.getString("NOME"))
-                                .CPF(rs.getString("CPF"))
-                                .NUMBENEFICIO(rs.getString("NUMBENEFICIO"))
-                                .RENDA(rs.getBigDecimal("RENDA"))
-                                .DATA_NASCIMENTO(rs.getDate("DATA_NASCIMENTO"))
-                                .ENDERECO(rs.getString("ENDERECO"))
-                                .CEP(rs.getString("CEP"))
-                                .UF(rs.getString("UF"))
-                                .CIDADE(rs.getString("CIDADE"))
-                                .EMAIL(rs.getString("EMAIL"))
-                                .CELULAR(rs.getString("CELULAR"))
-                                .TELEFONE(rs.getString("TELEFONE"))
-                                .build());
     }
 
 

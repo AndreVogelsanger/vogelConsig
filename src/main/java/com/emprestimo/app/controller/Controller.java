@@ -1,13 +1,16 @@
 package com.emprestimo.app.controller;
 
 import com.emprestimo.app.dto.PessoaDto;
+import com.emprestimo.app.model.Pessoa;
 import com.emprestimo.app.processor.PessoaProcessor;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 import static org.springframework.http.MediaType.*;
 
@@ -30,34 +33,20 @@ public class Controller {
     }
 
     @GetMapping("/v1/NumBeneficio")
-    public String getNumBeneficio(String numbeneficio) {
+    public PessoaDto getNumBeneficio(String numbeneficio) {
         var dto = PessoaDto.builder().numbeneficio(numbeneficio).build();
-        return pessoaProcessor.getNumBeneficio(dto).toString();
+        return pessoaProcessor.getNumBeneficio(dto);
     }
 
     @GetMapping("/v1/ListaCliente")
-    public String getListaCliente(){
-        return pessoaProcessor.getClienteList().toString();
+    public List<PessoaDto> getListaCliente(){
+        return pessoaProcessor.getClienteList();
     }
 
     @PostMapping("/v1/ClienteNovo")
-    public String PostClienteNovo (String NOME, String CPF, String NUMBENEFICIO, BigDecimal RENDA, Date DATA_NASCIMENTO, String ENDERECO
-            , String CEP, String UF, String CIDADE, String EMAIL, String CELULAR, String TELEFONE){
-        var dto = PessoaDto.builder()
-                .nome(NOME)
-                .cpf(CPF)
-                .numbeneficio(NUMBENEFICIO)
-                .renda(RENDA)
-                .data_nascimento(DATA_NASCIMENTO)
-                .endereco(ENDERECO)
-                .cep(CEP)
-                .uf(UF)
-                .cidade(CIDADE)
-                .email(EMAIL)
-                .celular(CELULAR)
-                .telefone(TELEFONE)
-                .build();
-        return pessoaProcessor.postClienteNovo(dto).toString();
+    @ResponseStatus(HttpStatus.CREATED)
+    public void PostClienteNovo (@RequestBody PessoaDto pessoaDto){
+         pessoaProcessor.postClienteNovo(pessoaDto);
     }
 
     @DeleteMapping("/v1/CpfDeletar")

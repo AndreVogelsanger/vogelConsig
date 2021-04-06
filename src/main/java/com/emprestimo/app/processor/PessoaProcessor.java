@@ -8,6 +8,7 @@ import com.emprestimo.app.repository.PessoaRepository;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -31,18 +32,34 @@ public class PessoaProcessor {
         return pessoaRepository.getCpf(cliente.getCpf());
     }
 
-    public Pessoa getNumBeneficio(PessoaDto cliente){
-        return pessoaRepository.getNumBeneficio(cliente.getNumbeneficio());
+    public PessoaDto getNumBeneficio(PessoaDto pessoaDto){
+        var pessoa = pessoaRepository.getNumBeneficio(pessoaDto.getNumbeneficio());
+        var pessoadto = PessoaDto.builder().build();
+        return pessoadto;
     }
 
-    public List<Pessoa> getClienteList(){
-        return pessoaRepository.getClienteList();
+    public List<PessoaDto> getClienteList(){
+        List<PessoaDto> pessoas = new ArrayList<>();
+        pessoaRepository.getClienteList().stream().forEach(pessoa -> {
+            var p =    PessoaDto.builder()
+                    .nome(pessoa.getNOME())
+                    .cpf(pessoa.getCPF())
+                    .numbeneficio(pessoa.getNUMBENEFICIO())
+                    .build();
+            pessoas.add(p);
+     });
+        return pessoas;
     }
 
-    public Pessoa postClienteNovo(PessoaDto cliente){
-        return pessoaRepository.postClienteNovo(cliente.getNome(),cliente.getCpf(),cliente.getNumbeneficio(),cliente.getRenda(),
-                cliente.getData_nascimento(),cliente.getEndereco(), cliente.getCep(), cliente.getUf(), cliente.getCidade(), cliente.getEmail(),
-                cliente.getCelular(), cliente.getTelefone());
+
+
+    public void postClienteNovo(PessoaDto pessoaDto){
+        var pessoa = Pessoa.builder()
+                .NOME(pessoaDto.getNome())
+                .CPF(pessoaDto.getCpf())
+                .NUMBENEFICIO(pessoaDto.getNumbeneficio())
+                .build();
+        pessoaRepository.postClienteNovo(pessoa);
     }
 
     public Pessoa getCpfDeletar(PessoaDto cliente){

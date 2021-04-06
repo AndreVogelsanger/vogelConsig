@@ -1,8 +1,6 @@
 package com.emprestimo.app.dto;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -12,6 +10,8 @@ import java.util.Date;
 
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class PessoaDto {
     private String nome;
     private String cpf;
