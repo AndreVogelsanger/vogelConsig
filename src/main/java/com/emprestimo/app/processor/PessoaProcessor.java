@@ -1,18 +1,13 @@
 package com.emprestimo.app.processor;
 
-import com.emprestimo.app.Scripty.PessoaSQL;
 import com.emprestimo.app.dto.PessoaDto;
 import com.emprestimo.app.model.Pessoa;
 import com.emprestimo.app.repository.PessoaRepository;
 
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-
-import static com.fasterxml.jackson.databind.jsonFormatVisitors.JsonValueFormat.EMAIL;
 
 @Named
 public class PessoaProcessor {
@@ -24,17 +19,60 @@ public class PessoaProcessor {
         this.pessoaRepository = pessoaRepository;
     }
 
-    public Pessoa getCliente(PessoaDto cliente){
-        return pessoaRepository.getCliente(cliente.getNome());
+    public PessoaDto getCliente(PessoaDto pessoaDto){
+        var pessoa =  pessoaRepository.getCliente(pessoaDto.getNome());
+        var pessoadto = PessoaDto.builder()
+                .nome(pessoa.getNOME())
+                .cpf(pessoa.getCPF())
+                .numbeneficio(pessoa.getNUMBENEFICIO())
+                .renda(pessoa.getRENDA())
+                .data_nascimento(pessoa.getDATA_NASCIMENTO())
+                .endereco(pessoa.getENDERECO())
+                .cep(pessoa.getCEP())
+                .uf(pessoa.getUF())
+                .cidade(pessoa.getCIDADE())
+                .email(pessoa.getEMAIL())
+                .celular(pessoa.getCELULAR())
+                .telefone(pessoa.getTELEFONE())
+                .build();
+        return pessoadto;
     }
 
-    public Pessoa getCpf(PessoaDto cliente){
-        return pessoaRepository.getCpf(cliente.getCpf());
+    public PessoaDto getCpf(PessoaDto pessoaDto){
+        var pessoa = pessoaRepository.getCpf(pessoaDto.getCpf());
+        var pessoadto = PessoaDto.builder()
+                .nome(pessoa.getNOME())
+                .cpf(pessoa.getCPF())
+                .numbeneficio(pessoa.getNUMBENEFICIO())
+                .renda(pessoa.getRENDA())
+                .data_nascimento(pessoa.getDATA_NASCIMENTO())
+                .endereco(pessoa.getENDERECO())
+                .cep(pessoa.getCEP())
+                .uf(pessoa.getUF())
+                .cidade(pessoa.getCIDADE())
+                .email(pessoa.getEMAIL())
+                .celular(pessoa.getCELULAR())
+                .telefone(pessoa.getTELEFONE())
+                .build();
+        return pessoadto;
     }
 
     public PessoaDto getNumBeneficio(PessoaDto pessoaDto){
         var pessoa = pessoaRepository.getNumBeneficio(pessoaDto.getNumbeneficio());
-        var pessoadto = PessoaDto.builder().build();
+        var pessoadto = PessoaDto.builder()
+                .nome(pessoa.getNOME())
+                .cpf(pessoa.getCPF())
+                .numbeneficio(pessoa.getNUMBENEFICIO())
+                .renda(pessoa.getRENDA())
+                .data_nascimento(pessoa.getDATA_NASCIMENTO())
+                .endereco(pessoa.getENDERECO())
+                .cep(pessoa.getCEP())
+                .uf(pessoa.getUF())
+                .cidade(pessoa.getCIDADE())
+                .email(pessoa.getEMAIL())
+                .celular(pessoa.getCELULAR())
+                .telefone(pessoa.getTELEFONE())
+                .build();
         return pessoadto;
     }
 
@@ -45,9 +83,18 @@ public class PessoaProcessor {
                     .nome(pessoa.getNOME())
                     .cpf(pessoa.getCPF())
                     .numbeneficio(pessoa.getNUMBENEFICIO())
+                    .renda(pessoa.getRENDA())
+                    .data_nascimento(pessoa.getDATA_NASCIMENTO())
+                    .endereco(pessoa.getENDERECO())
+                    .cep(pessoa.getCEP())
+                    .uf(pessoa.getUF())
+                    .cidade(pessoa.getCIDADE())
+                    .email(pessoa.getEMAIL())
+                    .celular(pessoa.getCELULAR())
+                    .telefone(pessoa.getTELEFONE())
                     .build();
             pessoas.add(p);
-     });
+        });
         return pessoas;
     }
 
@@ -58,20 +105,45 @@ public class PessoaProcessor {
                 .NOME(pessoaDto.getNome())
                 .CPF(pessoaDto.getCpf())
                 .NUMBENEFICIO(pessoaDto.getNumbeneficio())
+                .RENDA(pessoaDto.getRenda())
+                .DATA_NASCIMENTO(pessoaDto.getData_nascimento())
+                .ENDERECO(pessoaDto.getEndereco())
+                .CEP(pessoaDto.getCep())
+                .UF(pessoaDto.getUf())
+                .CIDADE(pessoaDto.getCidade())
+                .EMAIL(pessoaDto.getEmail())
+                .CELULAR(pessoaDto.getCelular())
+                .TELEFONE(pessoaDto.getTelefone())
                 .build();
         pessoaRepository.postClienteNovo(pessoa);
     }
 
-    public Pessoa getCpfDeletar(PessoaDto cliente){
-        return pessoaRepository.getCpfDeletar(cliente.getCpf());
+    public void getCpfDeletar(PessoaDto pessoaDto){
+        var pessoa = Pessoa.builder().CPF(pessoaDto.getCpf()).build();
+        pessoaRepository.getCpfDeletar(pessoa);
     }
 
-    public Pessoa getNumBeneficioDeletar(PessoaDto cliente){
-        return pessoaRepository.getNumBeneficioDeletar(cliente.getNumbeneficio());
+    public void getNumBeneficioDeletar(PessoaDto pessoaDto){
+        var pessoa = Pessoa.builder().NUMBENEFICIO(pessoaDto.getNumbeneficio()).build();
+        pessoaRepository.getNumBeneficioDeletar(pessoa);
     }
 
-    public Pessoa getCpfAtualizar(PessoaDto cliente){
-        return pessoaRepository.getCpfAtualizar(cliente.getCpf());
+    public void putCpfAtualizar(PessoaDto pessoaDto){
+        var pessoa = Pessoa.builder()
+                .NOME(pessoaDto.getNome())
+                .CPF(pessoaDto.getCpf())
+                .NUMBENEFICIO(pessoaDto.getNumbeneficio())
+                .RENDA(pessoaDto.getRenda())
+                .DATA_NASCIMENTO(pessoaDto.getData_nascimento())
+                .ENDERECO(pessoaDto.getEndereco())
+                .CEP(pessoaDto.getCep())
+                .UF(pessoaDto.getUf())
+                .CIDADE(pessoaDto.getCidade())
+                .EMAIL(pessoaDto.getEmail())
+                .CELULAR(pessoaDto.getCelular())
+                .TELEFONE(pessoaDto.getTelefone())
+                .build();
+        pessoaRepository.putCpfAtualizar(pessoa);
     }
 
 }

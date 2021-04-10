@@ -21,15 +21,15 @@ public class Controller {
     private final PessoaProcessor pessoaProcessor;
 
     @GetMapping("/v1/Cliente")
-    public String getCliente(String nome){
+    public PessoaDto getCliente(String nome){
         var dto = PessoaDto.builder().nome(nome).build();
-        return pessoaProcessor.getCliente(dto).toString();
+        return pessoaProcessor.getCliente(dto);
     }
 
     @GetMapping("/v1/Cpf")
-    public String getCpf(String cpf){
+    public PessoaDto getCpf(String cpf){
         var dto = PessoaDto.builder().cpf(cpf).build();
-        return pessoaProcessor.getCpf(dto).toString();
+        return pessoaProcessor.getCpf(dto);
     }
 
     @GetMapping("/v1/NumBeneficio")
@@ -50,21 +50,20 @@ public class Controller {
     }
 
     @DeleteMapping("/v1/CpfDeletar")
-    public String getCpfDeletar(String cpf){
+    public void getCpfDeletar(String cpf){
         var dto = PessoaDto.builder().cpf(cpf).build();
-        return pessoaProcessor.getCpfDeletar(dto).toString();
+        pessoaProcessor.getCpfDeletar(dto);
     }
 
     @DeleteMapping("/v1/NumBeneficioDeletar")
-    public String getNumBeneficioDeletar(String numbeneficio){
+    public void getNumBeneficioDeletar(String numbeneficio){
         var dto = PessoaDto.builder().numbeneficio(numbeneficio).build();
-        return pessoaProcessor.getNumBeneficioDeletar(dto).toString();
+        pessoaProcessor.getNumBeneficioDeletar(dto);
     }
 
     @PutMapping("/v1/CpfAtualizar")
-    public String getCpfAtualizar(String cpf){
-        var dto = PessoaDto.builder().cpf(cpf).build();
-        return pessoaProcessor.getCpfAtualizar(dto).toString();
+    public void putCpfAtualizar(@RequestBody PessoaDto pessoaDto){
+       pessoaProcessor.putCpfAtualizar(pessoaDto);
     }
 
 

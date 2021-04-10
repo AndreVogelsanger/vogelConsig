@@ -1,10 +1,6 @@
 package com.emprestimo.app.dto;
 
 import lombok.*;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-
-import javax.ws.rs.Produces;
 import java.math.BigDecimal;
 import java.util.Date;
 
