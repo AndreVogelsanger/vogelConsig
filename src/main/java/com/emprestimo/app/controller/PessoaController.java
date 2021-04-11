@@ -16,7 +16,7 @@ import static org.springframework.http.MediaType.*;
 
 @RestController
 @AllArgsConstructor(onConstructor = @__(@Inject))
-public class Controller {
+public class PessoaController {
 
     private final PessoaProcessor pessoaProcessor;
 
