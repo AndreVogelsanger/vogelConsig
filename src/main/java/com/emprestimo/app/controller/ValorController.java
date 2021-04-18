@@ -1,10 +1,8 @@
 package com.emprestimo.app.controller;
 
 
-import com.emprestimo.app.dto.PessoaDto;
 import com.emprestimo.app.dto.ValorDto;
 import com.emprestimo.app.processor.ValorProcessor;
-import com.emprestimo.app.repository.ValorRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

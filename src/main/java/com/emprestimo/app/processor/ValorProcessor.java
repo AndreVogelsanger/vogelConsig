@@ -1,10 +1,7 @@
 package com.emprestimo.app.processor;
 
-import com.emprestimo.app.dto.PessoaDto;
 import com.emprestimo.app.dto.ValorDto;
-import com.emprestimo.app.model.Pessoa;
 import com.emprestimo.app.model.Valor;
-import com.emprestimo.app.repository.PessoaRepository;
 import com.emprestimo.app.repository.ValorRepository;
 
 import javax.inject.Inject;

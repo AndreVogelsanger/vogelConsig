@@ -1,0 +1,39 @@
+package com.emprestimo.app.model.cliente;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.math.BigDecimal;
+import java.util.Date;
+
+
+
+@Data
+@Builder
+@AllArgsConstructor
+public class Pessoa {
+
+    private long idpessoa;
+    private String nome;
+    private String cpf;
+    private String rg;
+    private Date dataemissaorg;
+    private String ufrg;
+    private BigDecimal renda;
+    private Date datanascimento;
+    private String naturalidae;
+    private String estadonascimento;
+    private String estadocivil;
+    private String nomepai;
+    private String nomemae;
+    private String email;
+    private String indicacao;
+    private String numbeneficio;
+    private String matricula;
+
+    public Pessoa() {
+
+    }
+}
