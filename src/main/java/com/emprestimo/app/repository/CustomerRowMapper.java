@@ -8,7 +8,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 @Named
-@AllArgsConstructor
 public class CustomerRowMapper implements RowMapper<Pessoa> {
 
     @Override

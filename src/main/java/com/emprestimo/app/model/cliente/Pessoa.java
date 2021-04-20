@@ -13,6 +13,7 @@ import java.util.Date;
 @Data
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class Pessoa {
 
     private long idpessoa;
@@ -33,7 +34,5 @@ public class Pessoa {
     private String numbeneficio;
     private String matricula;
 
-    public Pessoa() {
 
-    }
-}
+ }
