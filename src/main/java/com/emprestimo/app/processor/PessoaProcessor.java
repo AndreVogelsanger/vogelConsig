@@ -1,7 +1,10 @@
 package com.emprestimo.app.processor;
 
 import com.emprestimo.app.dto.cliente.PessoaDto;
+import com.emprestimo.app.model.cliente.Pessoa;
 import com.emprestimo.app.repository.PessoaRepository;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -9,18 +12,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Named
+@AllArgsConstructor
 public class PessoaProcessor {
 
     private final PessoaRepository pessoaRepository;
 
-    @Inject
-    public PessoaProcessor(PessoaRepository pessoaRepository) {
-        this.pessoaRepository = pessoaRepository;
-    }
-
-
     public List<PessoaDto> findAll(){
-
         List<PessoaDto> pessoas = new ArrayList<>();
         pessoaRepository.findAll().stream().forEach(pessoa -> {
             var p = PessoaDto.builder()
@@ -46,129 +43,101 @@ public class PessoaProcessor {
         return pessoas;
     }
 
-//    public PessoaDto getCliente(PessoaDto pessoaDto){
-//        var pessoa =  pessoaRepository.getCliente(pessoaDto.getNome());
-//        var pessoadto = PessoaDto.builder()
-//                .nome(pessoa.getNOME())
-//                .cpf(pessoa.getCPF())
-//                .numbeneficio(pessoa.getNUMBENEFICIO())
-//                .renda(pessoa.getRENDA())
-//                .data_nascimento(pessoa.getDATA_NASCIMENTO())
-//                .endereco(pessoa.getENDERECO())
-//                .cep(pessoa.getCEP())
-//                .uf(pessoa.getUF())
-//                .cidade(pessoa.getCIDADE())
-//                .email(pessoa.getEMAIL())
-//                .celular(pessoa.getCELULAR())
-//                .telefone(pessoa.getTELEFONE())
-//                .build();
-//        return pessoadto;
-//    }
-//
-//    public PessoaDto getCpf(PessoaDto pessoaDto){
-//        var pessoa = pessoaRepository.getCpf(pessoaDto.getCpf());
-//        var pessoadto = PessoaDto.builder()
-//                .nome(pessoa.getNOME())
-//                .cpf(pessoa.getCPF())
-//                .numbeneficio(pessoa.getNUMBENEFICIO())
-//                .renda(pessoa.getRENDA())
-//                .data_nascimento(pessoa.getDATA_NASCIMENTO())
-//                .endereco(pessoa.getENDERECO())
-//                .cep(pessoa.getCEP())
-//                .uf(pessoa.getUF())
-//                .cidade(pessoa.getCIDADE())
-//                .email(pessoa.getEMAIL())
-//                .celular(pessoa.getCELULAR())
-//                .telefone(pessoa.getTELEFONE())
-//                .build();
-//        return pessoadto;
-//    }
-//
-//    public PessoaDto getNumBeneficio(PessoaDto pessoaDto){
-//        var pessoa = pessoaRepository.getNumBeneficio(pessoaDto.getNumbeneficio());
-//        var pessoadto = PessoaDto.builder()
-//                .nome(pessoa.getNOME())
-//                .cpf(pessoa.getCPF())
-//                .numbeneficio(pessoa.getNUMBENEFICIO())
-//                .renda(pessoa.getRENDA())
-//                .data_nascimento(pessoa.getDATA_NASCIMENTO())
-//                .endereco(pessoa.getENDERECO())
-//                .cep(pessoa.getCEP())
-//                .uf(pessoa.getUF())
-//                .cidade(pessoa.getCIDADE())
-//                .email(pessoa.getEMAIL())
-//                .celular(pessoa.getCELULAR())
-//                .telefone(pessoa.getTELEFONE())
-//                .build();
-//        return pessoadto;
-//    }
-//
-//    public List<PessoaDto> getClienteList(){
-//        List<PessoaDto> pessoas = new ArrayList<>();
-//        pessoaRepository.getClienteList().stream().forEach(pessoa -> {
-//            var p =    PessoaDto.builder()
-//                    .nome(pessoa.getNOME())
-//                    .cpf(pessoa.getCPF())
-//                    .numbeneficio(pessoa.getNUMBENEFICIO())
-//                    .renda(pessoa.getRENDA())
-//                    .data_nascimento(pessoa.getDATA_NASCIMENTO())
-//                    .endereco(pessoa.getENDERECO())
-//                    .cep(pessoa.getCEP())
-//                    .uf(pessoa.getUF())
-//                    .cidade(pessoa.getCIDADE())
-//                    .email(pessoa.getEMAIL())
-//                    .celular(pessoa.getCELULAR())
-//                    .telefone(pessoa.getTELEFONE())
-//                    .build();
-//            pessoas.add(p);
-//        });
-//        return pessoas;
-//    }
-//
-//    public void postClienteNovo(PessoaDto pessoaDto){
-//        var pessoa = Pessoa.builder()
-//                .NOME(pessoaDto.getNome())
-//                .CPF(pessoaDto.getCpf())
-//                .NUMBENEFICIO(pessoaDto.getNumbeneficio())
-//                .RENDA(pessoaDto.getRenda())
-//                .DATA_NASCIMENTO(pessoaDto.getData_nascimento())
-//                .ENDERECO(pessoaDto.getEndereco())
-//                .CEP(pessoaDto.getCep())
-//                .UF(pessoaDto.getUf())
-//                .CIDADE(pessoaDto.getCidade())
-//                .EMAIL(pessoaDto.getEmail())
-//                .CELULAR(pessoaDto.getCelular())
-//                .TELEFONE(pessoaDto.getTelefone())
-//                .build();
-//        pessoaRepository.postClienteNovo(pessoa);
-//    }
-//
-//    public void getCpfDeletar(PessoaDto pessoaDto){
-//        var pessoa = Pessoa.builder().CPF(pessoaDto.getCpf()).build();
-//        pessoaRepository.getCpfDeletar(pessoa);
-//    }
-//
-//    public void getNumBeneficioDeletar(PessoaDto pessoaDto){
-//        var pessoa = Pessoa.builder().NUMBENEFICIO(pessoaDto.getNumbeneficio()).build();
-//        pessoaRepository.getNumBeneficioDeletar(pessoa);
-//    }
-//
-//    public void putCpfAtualizar(PessoaDto pessoaDto){
-//        var pessoa = Pessoa.builder()
-//                .NOME(pessoaDto.getNome())
-//                .CPF(pessoaDto.getCpf())
-//                .NUMBENEFICIO(pessoaDto.getNumbeneficio())
-//                .RENDA(pessoaDto.getRenda())
-//                .DATA_NASCIMENTO(pessoaDto.getData_nascimento())
-//                .ENDERECO(pessoaDto.getEndereco())
-//                .CEP(pessoaDto.getCep())
-//                .UF(pessoaDto.getUf())
-//                .CIDADE(pessoaDto.getCidade())
-//                .EMAIL(pessoaDto.getEmail())
-//                .CELULAR(pessoaDto.getCelular())
-//                .TELEFONE(pessoaDto.getTelefone())
-//                .build();
-//        pessoaRepository.putCpfAtualizar(pessoa);
-//    }
+    public PessoaDto FindByCpf(PessoaDto pessoaDto){
+        var pessoa = pessoaRepository.findByCpf(pessoaDto.getCpf());
+        var pessoadto = PessoaDto.builder()
+                .nome(pessoa.getNome())
+                .cpf(pessoa.getCpf())
+                .rg(pessoa.getRg())
+                .dataemissaorg(pessoa.getDataemissaorg())
+                .ufrg(pessoa.getUfrg())
+                .renda(pessoa.getRenda())
+                .datanascimento(pessoa.getDatanascimento())
+                .naturalidae(pessoa.getNaturalidae())
+                .estadonascimento(pessoa.getEstadonascimento())
+                .estadocivil(pessoa.getEstadocivil())
+                .nomepai(pessoa.getNomepai())
+                .nomemae(pessoa.getNomemae())
+                .email(pessoa.getEmail())
+                .indicacao(pessoa.getIndicacao())
+                .numbeneficio(pessoa.getNumbeneficio())
+                .matricula(pessoa.getMatricula())
+                .build();
+        return pessoadto;
+    }
+
+    public PessoaDto FindByNome(PessoaDto pessoaDto){
+        var pessoa = pessoaRepository.findByNome(pessoaDto.getNome());
+        var pessoadto = PessoaDto.builder()
+                .nome(pessoa.getNome())
+                .cpf(pessoa.getCpf())
+                .rg(pessoa.getRg())
+                .dataemissaorg(pessoa.getDataemissaorg())
+                .ufrg(pessoa.getUfrg())
+                .renda(pessoa.getRenda())
+                .datanascimento(pessoa.getDatanascimento())
+                .naturalidae(pessoa.getNaturalidae())
+                .estadonascimento(pessoa.getEstadonascimento())
+                .estadocivil(pessoa.getEstadocivil())
+                .nomepai(pessoa.getNomepai())
+                .nomemae(pessoa.getNomemae())
+                .email(pessoa.getEmail())
+                .indicacao(pessoa.getIndicacao())
+                .numbeneficio(pessoa.getNumbeneficio())
+                .matricula(pessoa.getMatricula())
+                .build();
+        return pessoadto;
+    }
+
+    public void Save(PessoaDto pessoaDto){
+        var pessoa = Pessoa.builder()
+                .nome(pessoaDto.getNome())
+                .cpf(pessoaDto.getCpf())
+                .rg(pessoaDto.getRg())
+                .dataemissaorg(pessoaDto.getDataemissaorg())
+                .ufrg(pessoaDto.getUfrg())
+                .renda(pessoaDto.getRenda())
+                .datanascimento(pessoaDto.getDatanascimento())
+                .naturalidae(pessoaDto.getNaturalidae())
+                .estadonascimento(pessoaDto.getEstadonascimento())
+                .estadocivil(pessoaDto.getEstadocivil())
+                .nomepai(pessoaDto.getNomepai())
+                .nomemae(pessoaDto.getNomemae())
+                .email(pessoaDto.getEmail())
+                .indicacao(pessoaDto.getIndicacao())
+                .numbeneficio(pessoaDto.getNumbeneficio())
+                .matricula(pessoaDto.getMatricula())
+                .build();
+        pessoaRepository.Save(pessoa);
+    }
+
+    public void Delete(PessoaDto pessoaDto){
+        var pessoa = Pessoa.builder().cpf(pessoaDto.getCpf()).build();
+        pessoaRepository.Delete(pessoa);
+    }
+
+
+
+    public void update(PessoaDto pessoaDto){
+        var pessoa = Pessoa.builder()
+                .nome(pessoaDto.getNome())
+                .cpf(pessoaDto.getCpf())
+                .rg(pessoaDto.getRg())
+                .dataemissaorg(pessoaDto.getDataemissaorg())
+                .ufrg(pessoaDto.getUfrg())
+                .renda(pessoaDto.getRenda())
+                .datanascimento(pessoaDto.getDatanascimento())
+                .naturalidae(pessoaDto.getNaturalidae())
+                .estadonascimento(pessoaDto.getEstadonascimento())
+                .estadocivil(pessoaDto.getEstadocivil())
+                .nomepai(pessoaDto.getNomepai())
+                .nomemae(pessoaDto.getNomemae())
+                .email(pessoaDto.getEmail())
+                .indicacao(pessoaDto.getIndicacao())
+                .numbeneficio(pessoaDto.getNumbeneficio())
+                .matricula(pessoaDto.getMatricula())
+                .build();
+        pessoaRepository.update(pessoa);
+    }
 
 }

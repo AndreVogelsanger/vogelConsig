@@ -1,7 +1,6 @@
 package com.emprestimo.app.repository;
 
 import com.emprestimo.app.model.cliente.Pessoa;
-import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.RowMapper;
 import javax.inject.Named;
 import java.sql.ResultSet;
@@ -15,7 +14,7 @@ public class CustomerRowMapper implements RowMapper<Pessoa> {
 
         var pessoa = new Pessoa();
 
-        pessoa.setIdpessoa(rs.getLong("idpessoa"));
+        //pessoa.setIdpessoa(rs.getLong("idpessoa"));
         pessoa.setNome(rs.getString("nome"));
         pessoa.setCpf(rs.getString("cpf"));
         pessoa.setRg(rs.getString("rg"));

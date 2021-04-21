@@ -18,7 +18,7 @@ public enum PessoaSQL{
     /*
     Insert
      */
-    SQL_INSERT_PESSOA("INSERT INTO PESSOA (NOME,CPF,NUMBENEFICIO,RENDA,DATA_NASCIMENTO,ENDERECO,CEP,UF,CIDADE,EMAIL,CELULAR,TELEFONE) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)"),
+    SQL_INSERT_PESSOA("INSERT INTO PESSOA (NOME,CPF,RG,DATAEMISSAORG,UFRG,RENDA,DATANASCIMENTO,NATURALIDAE,ESTADONASCIMENTO,ESTADOCIVIL,NOMEPAI,NOMEMAE,EMAIL,INDICACAO,NUMBENEFICIO,MATRICULA) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"),
     /*
     Delete
      */
@@ -28,9 +28,11 @@ public enum PessoaSQL{
     /*
     Update
      */
-    SQL_UPDATE_PESSOA("UPDATE PESSOA SET NOME = ?, CPF = ? , NUMBENEFICIO = ?" +
-            ",RENDA = ?,DATA_NASCIMENTO = ?,ENDERECO = ?,CEP = ?,UF = ?,CIDADE = ? ,EMAIL = ?," +
-            "CELULAR = ?,TELEFONE = ? WHERE CPF = ?");
+    SQL_UPDATE_PESSOA("UPDATE PESSOA SET NOME = ?" +
+            ",CPF = ?,RG = ?,DATAEMISSAORG = ?,UFRG = ?,RENDA = ?" +
+            ",DATANASCIMENTO = ?,NATURALIDAE = ?,ESTADONASCIMENTO = ?,ESTADOCIVIL = ?" +
+            ",NOMEPAI = ?,NOMEMAE = ?,EMAIL = ?,INDICACAO = ?,NUMBENEFICIO = ?,MATRICULA = ?" +
+            " WHERE CPF = ?");
 
      private String value;
 }
