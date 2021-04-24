@@ -1,11 +1,15 @@
 package com.emprestimo.app.model.cliente;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Banco {
 
     private long idbanco;
@@ -17,6 +21,6 @@ public class Banco {
     private long numconta;
     private int digitoconta;
     private String statusconta;
-    private long idpessoa;
+    private Pessoa idpessoa;
 
 }

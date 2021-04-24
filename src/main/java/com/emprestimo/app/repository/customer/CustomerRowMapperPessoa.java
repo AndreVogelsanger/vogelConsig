@@ -1,5 +1,6 @@
-package com.emprestimo.app.repository;
+package com.emprestimo.app.repository.customer;
 
+import com.emprestimo.app.model.cliente.Contato;
 import com.emprestimo.app.model.cliente.Pessoa;
 import org.springframework.jdbc.core.RowMapper;
 import javax.inject.Named;
@@ -7,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 @Named
-public class CustomerRowMapper implements RowMapper<Pessoa> {
+public class CustomerRowMapperPessoa implements RowMapper<Pessoa> {
 
     @Override
     public Pessoa mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -35,5 +36,4 @@ public class CustomerRowMapper implements RowMapper<Pessoa> {
         return pessoa;
 
     }
-
 }

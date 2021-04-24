@@ -1,13 +1,17 @@
 package com.emprestimo.app.model.cliente;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.inject.Named;
 
 @Builder
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Endereco {
 
     private long idendereco;
@@ -18,7 +22,7 @@ public class Endereco {
     private String bairro;
     private String cidade;
     private String estado;
-    private Long idpessoa;
+    private Pessoa idpessoa;
 
 
 }

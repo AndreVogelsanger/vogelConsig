@@ -1,12 +1,10 @@
-package com.emprestimo.app.processor;
+package com.emprestimo.app.processor.cliente;
 
 import com.emprestimo.app.dto.cliente.PessoaDto;
 import com.emprestimo.app.model.cliente.Pessoa;
-import com.emprestimo.app.repository.PessoaRepository;
+import com.emprestimo.app.repository.cliente.PessoaRepository;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 
-import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +17,7 @@ public class PessoaProcessor {
 
     public List<PessoaDto> findAll(){
         List<PessoaDto> pessoas = new ArrayList<>();
-        pessoaRepository.findAll().stream().forEach(pessoa -> {
+        pessoaRepository.findAllPessoa().stream().forEach(pessoa -> {
             var p = PessoaDto.builder()
                     .nome(pessoa.getNome())
                     .cpf(pessoa.getCpf())
@@ -108,7 +106,7 @@ public class PessoaProcessor {
                 .numbeneficio(pessoaDto.getNumbeneficio())
                 .matricula(pessoaDto.getMatricula())
                 .build();
-        pessoaRepository.Save(pessoa);
+        pessoaRepository.SavePessoa(pessoa);
     }
 
     public void Delete(PessoaDto pessoaDto){
@@ -137,7 +135,7 @@ public class PessoaProcessor {
                 .numbeneficio(pessoaDto.getNumbeneficio())
                 .matricula(pessoaDto.getMatricula())
                 .build();
-        pessoaRepository.update(pessoa);
+        pessoaRepository.updatePessoa(pessoa);
     }
 
 }

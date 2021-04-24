@@ -1,8 +1,9 @@
-package com.emprestimo.app.repository;
+package com.emprestimo.app.repository.cliente;
 
-import com.emprestimo.app.Scripty.PessoaSQL;
+import com.emprestimo.app.Scripty.cliente.PessoaSQL;
 import com.emprestimo.app.config.DataBaseConfig;
 import com.emprestimo.app.model.cliente.Pessoa;
+import com.emprestimo.app.repository.customer.CustomerRowMapperPessoa;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.inject.Inject;
@@ -16,30 +17,30 @@ import java.util.List;
 public class PessoaRepository {
 
     private final JdbcTemplate jdbcTemplate;
-    private final CustomerRowMapper customerRowMapper;
+    private final CustomerRowMapperPessoa customerRowMapperPessoa;
 
     @Inject
-    public PessoaRepository(@Named(DataBaseConfig.JDBC_DATABASE) JdbcTemplate jdbcTemplate, CustomerRowMapper customerRowMapper) {
+    public PessoaRepository(@Named(DataBaseConfig.JDBC_DATABASE) JdbcTemplate jdbcTemplate, CustomerRowMapperPessoa customerRowMapperPessoa) {
         this.jdbcTemplate = jdbcTemplate;
-        this.customerRowMapper = customerRowMapper;
+        this.customerRowMapperPessoa = customerRowMapperPessoa;
     }
 
-    public List<Pessoa> findAll(){
-        List<Pessoa> pessoa = jdbcTemplate.query(PessoaSQL.SQL_GET_LIST_PESSOAS.getValue(),customerRowMapper);
+    public List<Pessoa> findAllPessoa(){
+        List<Pessoa> pessoa = jdbcTemplate.query(PessoaSQL.SQL_GET_LIST_PESSOAS.getValue(), customerRowMapperPessoa);
         return pessoa;
     }
 
     public Pessoa findByCpf(String cpf){
-        Pessoa pessoa = jdbcTemplate.queryForObject(PessoaSQL.SQL_GET_CPFPESSOA.getValue(),customerRowMapper, new Object[]{cpf});
+        Pessoa pessoa = jdbcTemplate.queryForObject(PessoaSQL.SQL_GET_CPFPESSOA.getValue(), customerRowMapperPessoa,new Object[]{cpf});
         return pessoa;
     }
 
     public Pessoa findByNome(String nome){
-        Pessoa pessoa = jdbcTemplate.queryForObject(PessoaSQL.SQL_GET_NOMEPESSOA.getValue(),customerRowMapper, new Object[]{nome});
+        Pessoa pessoa = jdbcTemplate.queryForObject(PessoaSQL.SQL_GET_NOMEPESSOA.getValue(), customerRowMapperPessoa, new Object[]{nome});
         return pessoa;
     }
 
-    public void Save(Pessoa pessoa){
+    public void SavePessoa(Pessoa pessoa){
          jdbcTemplate.update(PessoaSQL.SQL_INSERT_PESSOA.getValue(),
                  ps -> {
                      ps.setString(1, pessoa.getNome());
@@ -65,7 +66,7 @@ public class PessoaRepository {
         return jdbcTemplate.update(PessoaSQL.SQL_DELETE_CPFPESSOA.getValue(), new Object[]{pessoa.getCpf()});
     }
 
-    public void update(Pessoa pessoa){
+    public void updatePessoa(Pessoa pessoa){
         jdbcTemplate.update(PessoaSQL.SQL_UPDATE_PESSOA.getValue(),
                 ps -> {
                     ps.setString(1, pessoa.getNome());

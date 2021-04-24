@@ -1,7 +1,8 @@
-package com.emprestimo.app.controller;
+package com.emprestimo.app.controller.cliente;
 
+import com.emprestimo.app.dto.cliente.ContatoDto;
 import com.emprestimo.app.dto.cliente.PessoaDto;
-import com.emprestimo.app.processor.PessoaProcessor;
+import com.emprestimo.app.processor.cliente.PessoaProcessor;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -23,8 +24,8 @@ public class PessoaController {
 
     @GetMapping("/v1/Cpf")
     public PessoaDto FindBycpf(String cpf){
-        var dto = PessoaDto.builder().cpf(cpf).build();
-        return pessoaProcessor.FindByCpf(dto);
+        var dtopessoa = PessoaDto.builder().cpf(cpf).build();
+        return pessoaProcessor.FindByCpf(dtopessoa);
     }
 
     @GetMapping("/v1/ListaCliente")

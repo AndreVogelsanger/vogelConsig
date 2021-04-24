@@ -1,4 +1,4 @@
-package com.emprestimo.app.Scripty;
+package com.emprestimo.app.Scripty.cliente;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,13 +7,16 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum PessoaSQL{
     /*
-     Selects
-     */
+    Selects
+    */
     SQL_GET_NOMEPESSOA ("SELECT * FROM PESSOA WHERE NOME = ?"),
     // COMO USAR O LIKE SQL_GET_NOMEPESSOA ("SELECT NOME FROM PESSOA WHERE NOME LIKE '?%'"),
 
-    SQL_GET_CPFPESSOA ("SELECT * FROM PESSOA WHERE CPF = ?"),
-    SQL_GET_NBENEFICIOPESSOAS ("SELECT * FROM PESSOA WHERE NUMBENEFICIO = ?"),
+    SQL_GET_CPFPESSOA ("select P.NOME,P.CPF,P.RG,P.DATAEMISSAORG,P.UFRG,P.RENDA,P.DATANASCIMENTO,P.NATURALIDAE,\n" +
+            "P.ESTADONASCIMENTO,P.ESTADOCIVIL,P.NOMEPAI,P.NOMEMAE,P.EMAIL,\n" +
+            "P.INDICACAO,P.NUMBENEFICIO,P.MATRICULA,C.celular,C.telefone,C.tipotelefone from Pessoa P \n" +
+            "inner join contato C  on p.idpessoa = C.idpessoa  WHERE P.CPF = ?"),
+
     SQL_GET_LIST_PESSOAS ("SELECT * FROM PESSOA"),
     /*
     Insert
@@ -23,8 +26,6 @@ public enum PessoaSQL{
     Delete
      */
     SQL_DELETE_CPFPESSOA("DELETE FROM PESSOA WHERE CPF = ?"),
-    SQL_DELETE_NUMBENEFICIOPESSOA("DELETE FROM PESSOA WHERE NUMBENEFICIO = ?"),
-
     /*
     Update
      */
