@@ -39,6 +39,9 @@ public class PessoaRepository {
         Pessoa pessoa = jdbcTemplate.queryForObject(PessoaSQL.SQL_GET_NOMEPESSOA.getValue(), customerRowMapperPessoa, new Object[]{nome});
         return pessoa;
     }
+    public int Delete(String cpf) {
+        return jdbcTemplate.update(PessoaSQL.SQL_DELETE_CPFPESSOA.getValue(), new Object[]{cpf});
+    }
 
     public void SavePessoa(Pessoa pessoa){
          jdbcTemplate.update(PessoaSQL.SQL_INSERT_PESSOA.getValue(),
@@ -62,9 +65,6 @@ public class PessoaRepository {
                  });
     }
 
-    public int Delete(Pessoa pessoa) {
-        return jdbcTemplate.update(PessoaSQL.SQL_DELETE_CPFPESSOA.getValue(), new Object[]{pessoa.getCpf()});
-    }
 
     public void updatePessoa(Pessoa pessoa){
         jdbcTemplate.update(PessoaSQL.SQL_UPDATE_PESSOA.getValue(),

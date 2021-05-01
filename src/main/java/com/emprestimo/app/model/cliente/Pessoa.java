@@ -1,5 +1,6 @@
 package com.emprestimo.app.model.cliente;
 
+import com.emprestimo.app.dto.cliente.PessoaDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

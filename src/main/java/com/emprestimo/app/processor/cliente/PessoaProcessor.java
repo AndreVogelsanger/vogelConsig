@@ -41,51 +41,51 @@ public class PessoaProcessor {
 //        return pessoas;
 //    }
 
-    public PessoaDto FindByCpf(PessoaDto pessoaDto){
-        var pessoa = pessoaRepository.findByCpf(pessoaDto.getCpf());
-        var pessoadto = PessoaDto.builder()
-                .nome(pessoa.getNome())
-                .cpf(pessoa.getCpf())
-                .rg(pessoa.getRg())
-                .dataemissaorg(pessoa.getDataemissaorg())
-                .ufrg(pessoa.getUfrg())
-                .renda(pessoa.getRenda())
-                .datanascimento(pessoa.getDatanascimento())
-                .naturalidae(pessoa.getNaturalidae())
-                .estadonascimento(pessoa.getEstadonascimento())
-                .estadocivil(pessoa.getEstadocivil())
-                .nomepai(pessoa.getNomepai())
-                .nomemae(pessoa.getNomemae())
-                .email(pessoa.getEmail())
-                .indicacao(pessoa.getIndicacao())
-                .numbeneficio(pessoa.getNumbeneficio())
-                .matricula(pessoa.getMatricula())
-                .build();
-        return pessoadto;
-    }
+//    public PessoaDto FindByCpf(PessoaDto pessoaDto){
+//        var pessoa = pessoaRepository.findByCpf(pessoaDto.getCpf());
+//        var pessoadto = PessoaDto.builder()
+//                .nome(pessoa.getNome())
+//                .cpf(pessoa.getCpf())
+//                .rg(pessoa.getRg())
+//                .dataemissaorg(pessoa.getDataemissaorg())
+//                .ufrg(pessoa.getUfrg())
+//                .renda(pessoa.getRenda())
+//                .datanascimento(pessoa.getDatanascimento())
+//                .naturalidae(pessoa.getNaturalidae())
+//                .estadonascimento(pessoa.getEstadonascimento())
+//                .estadocivil(pessoa.getEstadocivil())
+//                .nomepai(pessoa.getNomepai())
+//                .nomemae(pessoa.getNomemae())
+//                .email(pessoa.getEmail())
+//                .indicacao(pessoa.getIndicacao())
+//                .numbeneficio(pessoa.getNumbeneficio())
+//                .matricula(pessoa.getMatricula())
+//                .build();
+//        return pessoadto;
+//    }
 
-    public PessoaDto FindByNome(PessoaDto pessoaDto){
-        var pessoa = pessoaRepository.findByNome(pessoaDto.getNome());
-        var pessoadto = PessoaDto.builder()
-                .nome(pessoa.getNome())
-                .cpf(pessoa.getCpf())
-                .rg(pessoa.getRg())
-                .dataemissaorg(pessoa.getDataemissaorg())
-                .ufrg(pessoa.getUfrg())
-                .renda(pessoa.getRenda())
-                .datanascimento(pessoa.getDatanascimento())
-                .naturalidae(pessoa.getNaturalidae())
-                .estadonascimento(pessoa.getEstadonascimento())
-                .estadocivil(pessoa.getEstadocivil())
-                .nomepai(pessoa.getNomepai())
-                .nomemae(pessoa.getNomemae())
-                .email(pessoa.getEmail())
-                .indicacao(pessoa.getIndicacao())
-                .numbeneficio(pessoa.getNumbeneficio())
-                .matricula(pessoa.getMatricula())
-                .build();
-        return pessoadto;
-    }
+//    public PessoaDto FindByNome(PessoaDto pessoaDto){
+//        var pessoa = pessoaRepository.findByNome(pessoaDto.getNome());
+//        var pessoadto = PessoaDto.builder()
+//                .nome(pessoa.getNome())
+//                .cpf(pessoa.getCpf())
+//                .rg(pessoa.getRg())
+//                .dataemissaorg(pessoa.getDataemissaorg())
+//                .ufrg(pessoa.getUfrg())
+//                .renda(pessoa.getRenda())
+//                .datanascimento(pessoa.getDatanascimento())
+//                .naturalidae(pessoa.getNaturalidae())
+//                .estadonascimento(pessoa.getEstadonascimento())
+//                .estadocivil(pessoa.getEstadocivil())
+//                .nomepai(pessoa.getNomepai())
+//                .nomemae(pessoa.getNomemae())
+//                .email(pessoa.getEmail())
+//                .indicacao(pessoa.getIndicacao())
+//                .numbeneficio(pessoa.getNumbeneficio())
+//                .matricula(pessoa.getMatricula())
+//                .build();
+//        return pessoadto;
+//    }
 
     public void Save(PessoaDto pessoaDto){
         var pessoa = Pessoa.builder()
@@ -109,10 +109,10 @@ public class PessoaProcessor {
         pessoaRepository.SavePessoa(pessoa);
     }
 
-    public void Delete(PessoaDto pessoaDto){
-        var pessoa = Pessoa.builder().cpf(pessoaDto.getCpf()).build();
-        pessoaRepository.Delete(pessoa);
-    }
+//    public void Delete(PessoaDto pessoaDto){
+//        var pessoa = Pessoa.builder().cpf(pessoaDto.getCpf()).build();
+//        pessoaRepository.Delete(pessoa);
+//    }
 
 
 

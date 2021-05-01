@@ -20,33 +20,49 @@ public class PessoaController {
 
     private final PessoaProcessor pessoaProcessor;
     private final PessoaRepository pessoaRepository;
+
     @Autowired
     private final ModelMapper modelMapper;
 
+
+    private PessoaDto pessoaDto(int pessoa){
+        return modelMapper.map(pessoa,PessoaDto.class);
+    }
+    private PessoaDto pessoaDto(Pessoa pessoa){
+        return modelMapper.map(pessoa,PessoaDto.class);
+    }
+
+
     @GetMapping("/v1/Cliente")
     public PessoaDto FindByNome(String nome){
-        var dto = PessoaDto.builder().nome(nome).build();
-        return pessoaProcessor.FindByNome(dto);
+        Pessoa pessoa = pessoaRepository.findByNome(nome);
+        return pessoaDto(pessoa);
+//        var dto = PessoaDto.builder().nome(nome).build();
+//        return pessoaProcessor.FindByNome(dto);
     }
 
     @GetMapping("/v1/Cpf")
-    public PessoaDto FindBycpf(String cpf){
-        var dtopessoa = PessoaDto.builder().cpf(cpf).build();
-        return pessoaProcessor.FindByCpf(dtopessoa);
+    public PessoaDto findBycpf(String cpf){
+        Pessoa pessoa = pessoaRepository.findByCpf(cpf);
+         return pessoaDto(pessoa);
+//        var dtopessoa = PessoaDto.builder().cpf(cpf).build();
+//        return pessoaProcessor.findByCpf(dtopessoa);
+    }
+
+    @DeleteMapping("/v1/CpfDeletar")
+    public PessoaDto Delete(String cpf){
+        int pessoa = pessoaRepository.Delete(cpf);
+        return pessoaDto(pessoa);
+//        var dto = PessoaDto.builder().cpf(cpf).build();
+//        pessoaProcessor.Delete(dto);
     }
 
     @GetMapping("/v1/ListaCliente")
     public List<PessoaDto> findAll(){
         return pessoaRepository.findAll().stream().map(this::pessoaDto).collect(Collectors.toList());
-    }
-
-    private PessoaDto pessoaDto(Pessoa pessoa){
-        return modelMapper.map(pessoa,PessoaDto.class);
-    }
-
 //    public List<PessoaDto> findAll(){
 //        return pessoaProcessor.findAll();
-//    }
+    }
 
 
     @PostMapping("/v1/ClienteNovo")
@@ -55,15 +71,9 @@ public class PessoaController {
          pessoaProcessor.Save(pessoaDto);
     }
 
-    @DeleteMapping("/v1/CpfDeletar")
-    public void Delete(String cpf){
-        var dto = PessoaDto.builder().cpf(cpf).build();
-        pessoaProcessor.Delete(dto);
-    }
 
     @PutMapping("/v1/CpfAtualizar")
-    public void
-    update(@RequestBody PessoaDto pessoaDto){
+    public void update(@RequestBody PessoaDto pessoaDto){
        pessoaProcessor.update(pessoaDto);
     }
 
