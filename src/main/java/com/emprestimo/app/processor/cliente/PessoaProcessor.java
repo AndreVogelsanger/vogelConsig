@@ -15,31 +15,31 @@ public class PessoaProcessor {
 
     private final PessoaRepository pessoaRepository;
 
-    public List<PessoaDto> findAll(){
-        List<PessoaDto> pessoas = new ArrayList<>();
-        pessoaRepository.findAllPessoa().stream().forEach(pessoa -> {
-            var p = PessoaDto.builder()
-                    .nome(pessoa.getNome())
-                    .cpf(pessoa.getCpf())
-                    .rg(pessoa.getRg())
-                    .dataemissaorg(pessoa.getDataemissaorg())
-                    .ufrg(pessoa.getUfrg())
-                    .renda(pessoa.getRenda())
-                    .datanascimento(pessoa.getDatanascimento())
-                    .naturalidae(pessoa.getNaturalidae())
-                    .estadonascimento(pessoa.getEstadonascimento())
-                    .estadocivil(pessoa.getEstadocivil())
-                    .nomepai(pessoa.getNomepai())
-                    .nomemae(pessoa.getNomemae())
-                    .email(pessoa.getEmail())
-                    .indicacao(pessoa.getIndicacao())
-                    .numbeneficio(pessoa.getNumbeneficio())
-                    .matricula(pessoa.getMatricula())
-                    .build();
-                pessoas.add(p);
-        });
-        return pessoas;
-    }
+//    public List<PessoaDto> findAll(){
+//        List<PessoaDto> pessoas = new ArrayList<>();
+//        pessoaRepository.findAllPessoa().stream().forEach(pessoa -> {
+//            var p = PessoaDto.builder()
+//                    .nome(pessoa.getNome())
+//                    .cpf(pessoa.getCpf())
+//                    .rg(pessoa.getRg())
+//                    .dataemissaorg(pessoa.getDataemissaorg())
+//                    .ufrg(pessoa.getUfrg())
+//                    .renda(pessoa.getRenda())
+//                    .datanascimento(pessoa.getDatanascimento())
+//                    .naturalidae(pessoa.getNaturalidae())
+//                    .estadonascimento(pessoa.getEstadonascimento())
+//                    .estadocivil(pessoa.getEstadocivil())
+//                    .nomepai(pessoa.getNomepai())
+//                    .nomemae(pessoa.getNomemae())
+//                    .email(pessoa.getEmail())
+//                    .indicacao(pessoa.getIndicacao())
+//                    .numbeneficio(pessoa.getNumbeneficio())
+//                    .matricula(pessoa.getMatricula())
+//                    .build();
+//                pessoas.add(p);
+//        });
+//        return pessoas;
+//    }
 
     public PessoaDto FindByCpf(PessoaDto pessoaDto){
         var pessoa = pessoaRepository.findByCpf(pessoaDto.getCpf());

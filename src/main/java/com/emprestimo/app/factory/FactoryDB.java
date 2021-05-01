@@ -15,4 +15,11 @@ public class FactoryDB {
     @Value("${spring.datasource.password}")
     private String pass;
 
+    public String getUser() {
+        return user;
+    }
+
+    public String getPass() {
+        return pass;
+    }
 }

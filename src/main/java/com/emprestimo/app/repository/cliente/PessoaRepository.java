@@ -25,7 +25,7 @@ public class PessoaRepository {
         this.customerRowMapperPessoa = customerRowMapperPessoa;
     }
 
-    public List<Pessoa> findAllPessoa(){
+    public List<Pessoa> findAll(){
         List<Pessoa> pessoa = jdbcTemplate.query(PessoaSQL.SQL_GET_LIST_PESSOAS.getValue(), customerRowMapperPessoa);
         return pessoa;
     }

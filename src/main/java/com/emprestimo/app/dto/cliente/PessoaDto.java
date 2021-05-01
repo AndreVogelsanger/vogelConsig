@@ -26,5 +26,4 @@ public class PessoaDto {
     private String indicacao;
     private String numbeneficio;
     private String matricula;
-
 }
