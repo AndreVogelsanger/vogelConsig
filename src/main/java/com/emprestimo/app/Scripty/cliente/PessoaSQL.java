@@ -10,15 +10,19 @@ public enum PessoaSQL{
     Selects
     */
     SQL_GET_NOMEPESSOA ("SELECT * FROM PESSOA WHERE NOME = ?"),
-    // COMO USAR O LIKE SQL_GET_NOMEPESSOA ("SELECT NOME FROM PESSOA WHERE NOME LIKE '?%'"),
 
-//    SQL_GET_CPFPESSOA ("select P.NOME,P.CPF,P.RG,P.DATAEMISSAORG,P.UFRG,P.RENDA,P.DATANASCIMENTO,P.NATURALIDAE,\n" +
-//            "P.ESTADONASCIMENTO,P.ESTADOCIVIL,P.NOMEPAI,P.NOMEMAE,P.EMAIL,\n" +
-//            "P.INDICACAO,P.NUMBENEFICIO,P.MATRICULA,C.celular,C.telefone,C.tipotelefone from Pessoa P \n" +
-//            "inner join contato C  on p.idpessoa = C.idpessoa  WHERE P.CPF = ?"),
-       SQL_GET_CPFPESSOA ("select * from Pessoa WHERE CPF = ?"),
+    SQL_GET_CPFPESSOA ("select * from Pessoa WHERE CPF = ?"),
 
-    SQL_GET_LIST_PESSOAS ("SELECT * FROM PESSOA"),
+//    SQL_GET_LIST_PESSOAS ("SELECT * FROM PESSOA"),
+
+    SQL_GET_LIST_PESSOAS ("SELECT P.NOME,P.CPF,P.RG,P.DATAEMISSAORG,P.UFRG,P.RENDA,P.DATANASCIMENTO,P.NATURALIDAE," +
+            "P.ESTADONASCIMENTO,P.ESTADOCIVIL,P.NOMEPAI,P.NOMEMAE,P.EMAIL,P.INDICACAO,P.NUMBENEFICIO,P.MATRICULA," +
+            "C.telefone from Pessoa P inner join contato C on P.idpessoa = C.idpessoa WHERE P.CPF = '12345'"),
+
+//    SQL_GET_LIST_PESSOAS ("SELECT P.NOME,P.CPF,P.RG,P.DATAEMISSAORG,P.UFRG,P.RENDA,P.DATANASCIMENTO,P.NATURALIDAE," +
+//            "P.ESTADONASCIMENTO,P.ESTADOCIVIL,P.NOMEPAI,P.NOMEMAE,P.EMAIL,P.INDICACAO,P.NUMBENEFICIO,P.MATRICULA,C.celular," +
+//            "C.telefone,C.tipotelefone from Pessoa P inner join contato C on P.idpessoa = C.idpessoa WHERE P.CPF = 12345"),
+
     /*
     Insert
      */

@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 @AllArgsConstructor(onConstructor = @__(@Inject))
 public class PessoaController {
 
-    private final PessoaProcessor pessoaProcessor;
+   // private final PessoaProcessor pessoaProcessor;
     private final PessoaRepository pessoaRepository;
 
     @Autowired
@@ -31,7 +31,6 @@ public class PessoaController {
     private PessoaDto pessoaDto(Pessoa pessoa){
         return modelMapper.map(pessoa,PessoaDto.class);
     }
-
 
     @GetMapping("/v1/Cliente")
     public PessoaDto FindByNome(String nome){
@@ -67,15 +66,19 @@ public class PessoaController {
 
     @PostMapping("/v1/ClienteNovo")
     @ResponseStatus(HttpStatus.CREATED)
-    public void Save(@RequestBody PessoaDto pessoaDto){
-         pessoaProcessor.Save(pessoaDto);
+    public void Save(@RequestBody Pessoa p){
+        Pessoa pessoa = pessoaRepository.Save(p);
+        pessoaDto(pessoa);
+        // pessoaProcessor.Save(pessoaDto);
     }
 
 
     @PutMapping("/v1/CpfAtualizar")
-    public void update(@RequestBody PessoaDto pessoaDto){
-       pessoaProcessor.update(pessoaDto);
+    @ResponseStatus(HttpStatus.OK)
+    public void update(@RequestBody Pessoa p){
+       Pessoa pessoa =pessoaRepository.update(p);
+       pessoaDto(pessoa);
+        // pessoaProcessor.update(pessoaDto);
     }
-
 
 }

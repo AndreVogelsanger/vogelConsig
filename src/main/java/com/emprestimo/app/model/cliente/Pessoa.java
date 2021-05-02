@@ -1,15 +1,11 @@
 package com.emprestimo.app.model.cliente;
 
 import com.emprestimo.app.dto.cliente.PessoaDto;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.util.Date;
-
-
+import java.util.List;
 
 @Data
 @Builder
@@ -35,5 +31,11 @@ public class Pessoa {
     private String numbeneficio;
     private String matricula;
 
+    private Contato contato = new Contato();
 
- }
+    //private List<Contato> contatos;
+    private List<ContatoParente> contatosParetnte;
+    private List<Endereco> Enderecos;
+    private List<Banco> Bancos;
+
+}

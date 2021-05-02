@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.RowMapper;
 import javax.inject.Named;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 @Named
 public class CustomerRowMapperPessoa implements RowMapper<Pessoa> {
@@ -32,8 +33,9 @@ public class CustomerRowMapperPessoa implements RowMapper<Pessoa> {
         pessoa.setIndicacao(rs.getString("indicacao"));
         pessoa.setNumbeneficio(rs.getString("numbeneficio"));
         pessoa.setMatricula(rs.getString("matricula"));
-
+        pessoa.getContato().setTelefone(rs.getString("telefone"));
         return pessoa;
 
     }
+
 }

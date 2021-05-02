@@ -43,7 +43,7 @@ public class PessoaRepository {
         return jdbcTemplate.update(PessoaSQL.SQL_DELETE_CPFPESSOA.getValue(), new Object[]{cpf});
     }
 
-    public void SavePessoa(Pessoa pessoa){
+    public Pessoa Save(Pessoa pessoa){
          jdbcTemplate.update(PessoaSQL.SQL_INSERT_PESSOA.getValue(),
                  ps -> {
                      ps.setString(1, pessoa.getNome());
@@ -63,10 +63,11 @@ public class PessoaRepository {
                      ps.setString(15, pessoa.getNumbeneficio());
                      ps.setString(16, pessoa.getMatricula());
                  });
+        return pessoa;
     }
 
 
-    public void updatePessoa(Pessoa pessoa){
+    public Pessoa update(Pessoa pessoa){
         jdbcTemplate.update(PessoaSQL.SQL_UPDATE_PESSOA.getValue(),
                 ps -> {
                     ps.setString(1, pessoa.getNome());
@@ -87,5 +88,6 @@ public class PessoaRepository {
                     ps.setString(16, pessoa.getMatricula());
                     ps.setString(17, pessoa.getCpf());
                 });
+        return pessoa;
     }
 }

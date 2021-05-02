@@ -21,6 +21,6 @@ public class Banco {
     private long numconta;
     private int digitoconta;
     private String statusconta;
-    private Pessoa idpessoa;
+    private Pessoa pessoa;
 
 }
