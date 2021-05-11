@@ -16,7 +16,7 @@ public class CustomerRowMapperPessoa implements RowMapper<Pessoa> {
 
         var pessoa = new Pessoa();
 
-        //pessoa.setIdpessoa(rs.getLong("idpessoa"));
+        pessoa.setIdpessoa(rs.getLong("idpessoa"));
         pessoa.setNome(rs.getString("nome"));
         pessoa.setCpf(rs.getString("cpf"));
         pessoa.setRg(rs.getString("rg"));

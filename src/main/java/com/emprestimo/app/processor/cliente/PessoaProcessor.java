@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Named
 @AllArgsConstructor
@@ -22,7 +23,7 @@ public class PessoaProcessor {
         List<PessoaDto> pessoas = new ArrayList<>();
         pessoaRepository.findAll().stream().forEach(pessoa -> {
             var p = PessoaDto.builder()
-                    .nome(pessoa.getNome())
+                    .nomeCliente(pessoa.getNome())
                     .cpf(pessoa.getCpf())
                     .rg(pessoa.getRg())
                     .dataemissaorg(pessoa.getDataemissaorg())
@@ -58,8 +59,10 @@ public class PessoaProcessor {
               contatosDto.add(ctt);
         });
 
+        // pessoa.getContatos().stream().filter(contato -> contato.getTipocontato().contains("cel")).collect(Collectors.toList());
+
         var pessoadto = PessoaDto.builder()
-                .nome(pessoa.getNome())
+                .nomeCliente(pessoa.getNome())
                 .cpf(pessoa.getCpf())
                 .rg(pessoa.getRg())
                 .dataemissaorg(pessoa.getDataemissaorg())
@@ -82,9 +85,9 @@ public class PessoaProcessor {
     }
 
     public PessoaDto findByNome(PessoaDto pessoaDto){
-        var pessoa = pessoaRepository.findByNome(pessoaDto.getNome());
+        var pessoa = pessoaRepository.findByNome(pessoaDto.getNomeCliente());
         var pessoadto = PessoaDto.builder()
-                .nome(pessoa.getNome())
+                .nomeCliente(pessoa.getNome())
                 .cpf(pessoa.getCpf())
                 .rg(pessoa.getRg())
                 .dataemissaorg(pessoa.getDataemissaorg())
@@ -106,7 +109,7 @@ public class PessoaProcessor {
 
     public void save(PessoaDto pessoaDto){
         var pessoa = Pessoa.builder()
-                .nome(pessoaDto.getNome())
+                .nome(pessoaDto.getNomeCliente())
                 .cpf(pessoaDto.getCpf())
                 .rg(pessoaDto.getRg())
                 .dataemissaorg(pessoaDto.getDataemissaorg())
@@ -135,7 +138,7 @@ public class PessoaProcessor {
 
     public void update(PessoaDto pessoaDto){
         var pessoa = Pessoa.builder()
-                .nome(pessoaDto.getNome())
+                .nome(pessoaDto.getNomeCliente())
                 .cpf(pessoaDto.getCpf())
                 .rg(pessoaDto.getRg())
                 .dataemissaorg(pessoaDto.getDataemissaorg())

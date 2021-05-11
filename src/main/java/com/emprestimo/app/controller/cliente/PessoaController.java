@@ -36,7 +36,7 @@ public class PessoaController {
     public PessoaDto findByNome(String nome){
 //        Pessoa pessoa = pessoaRepository.findByNome(nome);
 //        return pessoaDto(pessoa);
-        var dto = PessoaDto.builder().nome(nome).build();
+        var dto = PessoaDto.builder().nomeCliente(nome).build();
         return pessoaProcessor.findByNome(dto);
     }
 
