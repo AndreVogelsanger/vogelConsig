@@ -3,6 +3,7 @@ package com.emprestimo.app.dto.cliente;
 import lombok.*;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Builder
@@ -26,4 +27,5 @@ public class PessoaDto {
     private String indicacao;
     private String numbeneficio;
     private String matricula;
+    private List<ContatoDto> contatoDtoList;
 }

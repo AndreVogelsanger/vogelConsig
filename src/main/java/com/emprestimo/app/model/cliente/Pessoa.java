@@ -13,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Pessoa {
 
-    private long idpessoa;
+    private Long idpessoa;
     private String nome;
     private String cpf;
     private String rg;
@@ -31,10 +31,7 @@ public class Pessoa {
     private String numbeneficio;
     private String matricula;
 
-    private Contato contato = new Contato();
-
-    //private List<Contato> contatos;
-    private List<ContatoParente> contatosParetnte;
+    private List<Contato> contatos;
     private List<Endereco> Enderecos;
     private List<Banco> Bancos;
 

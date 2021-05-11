@@ -5,7 +5,9 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum Contato {
+public enum ContatoSQL {
+
+        SQL_GET_LIST_CONTATO ("SELECT * FROM CONTATO WHERE IDPESSOA = ?");
 
 //        /*
 //    Insert
@@ -17,5 +19,5 @@ public enum Contato {
 //     */
 //   // SQL_UPDATE_CONTATO();
 //
-//     private String value;
+    private String value;
 }

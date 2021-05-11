@@ -23,6 +23,8 @@ public enum PessoaSQL{
 //            "P.ESTADONASCIMENTO,P.ESTADOCIVIL,P.NOMEPAI,P.NOMEMAE,P.EMAIL,P.INDICACAO,P.NUMBENEFICIO,P.MATRICULA,C.celular," +
 //            "C.telefone,C.tipotelefone from Pessoa P inner join contato C on P.idpessoa = C.idpessoa WHERE P.CPF = 12345"),
 
+   // insert into contato (celular,telefone,tipotelefone,idpessoa) Values('123456','123456','celular', (select nextval('sq_pessoa_idpessoa')-1));
+
     /*
     Insert
      */

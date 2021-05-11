@@ -39,11 +39,11 @@ public class PessoaRepository {
         Pessoa pessoa = jdbcTemplate.queryForObject(PessoaSQL.SQL_GET_NOMEPESSOA.getValue(), customerRowMapperPessoa, new Object[]{nome});
         return pessoa;
     }
-    public int Delete(String cpf) {
+    public int delete(String cpf) {
         return jdbcTemplate.update(PessoaSQL.SQL_DELETE_CPFPESSOA.getValue(), new Object[]{cpf});
     }
 
-    public Pessoa Save(Pessoa pessoa){
+    public Pessoa save(Pessoa pessoa){
          jdbcTemplate.update(PessoaSQL.SQL_INSERT_PESSOA.getValue(),
                  ps -> {
                      ps.setString(1, pessoa.getNome());

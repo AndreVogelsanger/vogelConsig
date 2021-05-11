@@ -11,10 +11,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ContatoDto {
 
-
-    private String celular;
-    private String telefone;
-    private String tipotelefone;
+    private String numero;
+    private String tipocontato;
+    private String decricao;
 
 
 }

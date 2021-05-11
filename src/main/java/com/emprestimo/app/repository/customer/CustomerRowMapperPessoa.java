@@ -33,7 +33,6 @@ public class CustomerRowMapperPessoa implements RowMapper<Pessoa> {
         pessoa.setIndicacao(rs.getString("indicacao"));
         pessoa.setNumbeneficio(rs.getString("numbeneficio"));
         pessoa.setMatricula(rs.getString("matricula"));
-        pessoa.getContato().setTelefone(rs.getString("telefone"));
         return pessoa;
 
     }
