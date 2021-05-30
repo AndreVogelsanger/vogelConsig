@@ -3,14 +3,13 @@ package com.emprestimo.app.processor.cliente;
 import com.emprestimo.app.dto.cliente.ContatoDto;
 import com.emprestimo.app.dto.cliente.PessoaDto;
 import com.emprestimo.app.model.cliente.Pessoa;
-import com.emprestimo.app.repository.cliente.PessoaRepository;
-import com.emprestimo.app.repository.contato.ContatoRepository;
+import com.emprestimo.app.repository.cliente.cliente.PessoaRepository;
+import com.emprestimo.app.repository.cliente.contato.ContatoRepository;
 import lombok.AllArgsConstructor;
 
 import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Named
 @AllArgsConstructor
@@ -22,7 +21,20 @@ public class PessoaProcessor {
     public List<PessoaDto> findAll(){
         List<PessoaDto> pessoas = new ArrayList<>();
         pessoaRepository.findAll().stream().forEach(pessoa -> {
-            var p = PessoaDto.builder()
+
+            pessoa.setContatos(contatoRepository.getContatoByIdPessoa(pessoa.getIdpessoa()));
+
+            List<ContatoDto> contatosDto = new ArrayList<>();
+            pessoa.getContatos().stream().forEach(contato -> {
+                var ctt = ContatoDto.builder()
+                        .numero(contato.getNumero())
+                        .tipocontato(contato.getTipocontato())
+                        .decricao(contato.getDecricao())
+                        .build();
+                contatosDto.add(ctt);
+            });
+
+             var p = PessoaDto.builder()
                     .nomeCliente(pessoa.getNome())
                     .cpf(pessoa.getCpf())
                     .rg(pessoa.getRg())
@@ -39,8 +51,11 @@ public class PessoaProcessor {
                     .indicacao(pessoa.getIndicacao())
                     .numbeneficio(pessoa.getNumbeneficio())
                     .matricula(pessoa.getMatricula())
+                    .contatos(contatosDto)
                     .build();
-                pessoas.add(p);
+            pessoas.add(p);
+
+
         });
         return pessoas;
     }
@@ -78,7 +93,7 @@ public class PessoaProcessor {
                 .indicacao(pessoa.getIndicacao())
                 .numbeneficio(pessoa.getNumbeneficio())
                 .matricula(pessoa.getMatricula())
-                .contatoDtoList(contatosDto)
+                .contatos(contatosDto)
                 .build();
 
         return pessoadto;
@@ -86,6 +101,19 @@ public class PessoaProcessor {
 
     public PessoaDto findByNome(PessoaDto pessoaDto){
         var pessoa = pessoaRepository.findByNome(pessoaDto.getNomeCliente());
+        pessoa.setContatos(contatoRepository.getContatoByIdPessoa(pessoa.getIdpessoa()));
+
+        List<ContatoDto> contatosDto = new ArrayList<>();
+        pessoa.getContatos().stream().forEach(contato -> {
+            var ctt = ContatoDto.builder()
+                    .numero(contato.getNumero())
+                    .tipocontato(contato.getTipocontato())
+                    .decricao(contato.getDecricao())
+                    .build();
+            contatosDto.add(ctt);
+        });
+
+
         var pessoadto = PessoaDto.builder()
                 .nomeCliente(pessoa.getNome())
                 .cpf(pessoa.getCpf())
@@ -103,6 +131,7 @@ public class PessoaProcessor {
                 .indicacao(pessoa.getIndicacao())
                 .numbeneficio(pessoa.getNumbeneficio())
                 .matricula(pessoa.getMatricula())
+                .contatos(contatosDto)
                 .build();
         return pessoadto;
     }

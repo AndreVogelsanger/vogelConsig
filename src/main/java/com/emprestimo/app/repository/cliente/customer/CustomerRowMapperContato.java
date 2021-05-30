@@ -1,4 +1,4 @@
-package com.emprestimo.app.repository.customer;
+package com.emprestimo.app.repository.cliente.customer;
 
 import com.emprestimo.app.model.cliente.Contato;
 import org.springframework.jdbc.core.RowMapper;

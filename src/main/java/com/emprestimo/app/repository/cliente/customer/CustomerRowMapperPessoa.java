@@ -1,4 +1,4 @@
-package com.emprestimo.app.repository.customer;
+package com.emprestimo.app.repository.cliente.customer;
 
 import com.emprestimo.app.model.cliente.Contato;
 import com.emprestimo.app.model.cliente.Pessoa;

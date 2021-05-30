@@ -13,17 +13,7 @@ public enum PessoaSQL{
 
     SQL_GET_CPFPESSOA ("select * from Pessoa WHERE CPF = ?"),
 
-//    SQL_GET_LIST_PESSOAS ("SELECT * FROM PESSOA"),
-
-    SQL_GET_LIST_PESSOAS ("SELECT P.NOME,P.CPF,P.RG,P.DATAEMISSAORG,P.UFRG,P.RENDA,P.DATANASCIMENTO,P.NATURALIDAE," +
-            "P.ESTADONASCIMENTO,P.ESTADOCIVIL,P.NOMEPAI,P.NOMEMAE,P.EMAIL,P.INDICACAO,P.NUMBENEFICIO,P.MATRICULA," +
-            "C.telefone from Pessoa P inner join contato C on P.idpessoa = C.idpessoa WHERE P.CPF = '12345'"),
-
-//    SQL_GET_LIST_PESSOAS ("SELECT P.NOME,P.CPF,P.RG,P.DATAEMISSAORG,P.UFRG,P.RENDA,P.DATANASCIMENTO,P.NATURALIDAE," +
-//            "P.ESTADONASCIMENTO,P.ESTADOCIVIL,P.NOMEPAI,P.NOMEMAE,P.EMAIL,P.INDICACAO,P.NUMBENEFICIO,P.MATRICULA,C.celular," +
-//            "C.telefone,C.tipotelefone from Pessoa P inner join contato C on P.idpessoa = C.idpessoa WHERE P.CPF = 12345"),
-
-   // insert into contato (celular,telefone,tipotelefone,idpessoa) Values('123456','123456','celular', (select nextval('sq_pessoa_idpessoa')-1));
+    SQL_GET_LIST_PESSOAS ("SELECT * FROM PESSOA"),
 
     /*
     Insert

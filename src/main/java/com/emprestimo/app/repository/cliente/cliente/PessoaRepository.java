@@ -1,9 +1,9 @@
-package com.emprestimo.app.repository.cliente;
+package com.emprestimo.app.repository.cliente.cliente;
 
 import com.emprestimo.app.Scripty.cliente.PessoaSQL;
 import com.emprestimo.app.config.DataBaseConfig;
 import com.emprestimo.app.model.cliente.Pessoa;
-import com.emprestimo.app.repository.customer.CustomerRowMapperPessoa;
+import com.emprestimo.app.repository.cliente.customer.CustomerRowMapperPessoa;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.inject.Inject;
