@@ -12,12 +12,12 @@ public enum ContatoSQL {
 //        /*
 //    Insert
 //     */
-//   // SQL_INSERT_CONTATO(),
-//
+//    SQL_INSERT_CONTATO("insert into contato (numero ,tipocontato,descricao,idpessoa) Values(?,?,?,currval('SQ_PESSOA_IDPESSOA'))),
+
 //     /*
 //    Update
 //     */
-//   // SQL_UPDATE_CONTATO();
+//    SQL_UPDATE_CONTATO();
 //
     private String value;
 }
