@@ -32,7 +32,7 @@ public class Pessoa {
     private String matricula;
 
     private List<Contato> contatos;
-    private List<Endereco> Enderecos;
-    private List<Banco> Bancos;
+    private List<Endereco> enderecos;
+    private List<Banco> bancos;
 
 }

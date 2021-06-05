@@ -1,5 +1,6 @@
 package com.emprestimo.app.dto.cliente;
 
+import com.emprestimo.app.model.cliente.Banco;
 import lombok.*;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -27,5 +28,9 @@ public class PessoaDto {
     private String indicacao;
     private String numbeneficio;
     private String matricula;
+
     private List<ContatoDto> contatos;
+    private List<EnderecoDto> enderecos;
+    private List<BancoDto> bancos;
+
 }

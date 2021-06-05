@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Banco {
 
-    private long idbanco;
+    private long idpessoa;
     private int numbanco;
     private String nomebanco;
     private long agencia;
@@ -21,6 +21,5 @@ public class Banco {
     private long numconta;
     private int digitoconta;
     private String statusconta;
-    private Pessoa pessoa;
 
 }

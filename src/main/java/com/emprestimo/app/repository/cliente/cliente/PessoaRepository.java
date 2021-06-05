@@ -3,7 +3,7 @@ package com.emprestimo.app.repository.cliente.cliente;
 import com.emprestimo.app.Scripty.cliente.PessoaSQL;
 import com.emprestimo.app.config.DataBaseConfig;
 import com.emprestimo.app.model.cliente.Pessoa;
-import com.emprestimo.app.repository.cliente.customer.CustomerRowMapperPessoa;
+import com.emprestimo.app.repository.cliente.rowMappers.RowMapperPessoa;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.inject.Inject;
@@ -17,26 +17,26 @@ import java.util.List;
 public class PessoaRepository {
 
     private final JdbcTemplate jdbcTemplate;
-    private final CustomerRowMapperPessoa customerRowMapperPessoa;
+    private final RowMapperPessoa rowMapperPessoa;
 
     @Inject
-    public PessoaRepository(@Named(DataBaseConfig.JDBC_DATABASE) JdbcTemplate jdbcTemplate, CustomerRowMapperPessoa customerRowMapperPessoa) {
+    public PessoaRepository(@Named(DataBaseConfig.JDBC_DATABASE) JdbcTemplate jdbcTemplate, RowMapperPessoa rowMapperPessoa) {
         this.jdbcTemplate = jdbcTemplate;
-        this.customerRowMapperPessoa = customerRowMapperPessoa;
+        this.rowMapperPessoa = rowMapperPessoa;
     }
 
     public List<Pessoa> findAll(){
-        List<Pessoa> pessoa = jdbcTemplate.query(PessoaSQL.SQL_GET_LIST_PESSOAS.getValue(), customerRowMapperPessoa);
+        List<Pessoa> pessoa = jdbcTemplate.query(PessoaSQL.SQL_GET_LIST_PESSOAS.getValue(), rowMapperPessoa);
         return pessoa;
     }
 
     public Pessoa findByCpf(String cpf){
-        Pessoa pessoa = jdbcTemplate.queryForObject(PessoaSQL.SQL_GET_CPFPESSOA.getValue(), customerRowMapperPessoa,new Object[]{cpf});
+        Pessoa pessoa = jdbcTemplate.queryForObject(PessoaSQL.SQL_GET_CPFPESSOA.getValue(), rowMapperPessoa,new Object[]{cpf});
         return pessoa;
     }
 
     public Pessoa findByNome(String nome){
-        Pessoa pessoa = jdbcTemplate.queryForObject(PessoaSQL.SQL_GET_NOMEPESSOA.getValue(), customerRowMapperPessoa, new Object[]{nome});
+        Pessoa pessoa = jdbcTemplate.queryForObject(PessoaSQL.SQL_GET_NOMEPESSOA.getValue(), rowMapperPessoa, new Object[]{nome});
         return pessoa;
     }
     public int delete(String cpf) {

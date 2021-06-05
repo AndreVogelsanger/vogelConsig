@@ -20,6 +20,7 @@ public class EnderecoDto {
     private String bairro;
     private String cidade;
     private String estado;
+    private Long numero;
 
 
 

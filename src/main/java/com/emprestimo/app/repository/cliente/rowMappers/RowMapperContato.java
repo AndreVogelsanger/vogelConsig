@@ -1,4 +1,4 @@
-package com.emprestimo.app.repository.cliente.customer;
+package com.emprestimo.app.repository.cliente.rowMappers;
 
 import com.emprestimo.app.model.cliente.Contato;
 import org.springframework.jdbc.core.RowMapper;
@@ -6,11 +6,9 @@ import org.springframework.jdbc.core.RowMapper;
 import javax.inject.Named;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 @Named
-public class CustomerRowMapperContato implements RowMapper<Contato> {
+public class RowMapperContato implements RowMapper<Contato> {
 
     @Override
     public Contato mapRow(ResultSet rs, int rowNum) throws SQLException {
