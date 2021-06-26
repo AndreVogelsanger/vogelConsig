@@ -1,6 +1,11 @@
 package com.emprestimo.app.controller.cliente;
 
+import com.emprestimo.app.dto.cliente.ContatoDto;
 import com.emprestimo.app.dto.cliente.PessoaDto;
+import com.emprestimo.app.model.cliente.Banco;
+import com.emprestimo.app.model.cliente.Contato;
+import com.emprestimo.app.model.cliente.Endereco;
+import com.emprestimo.app.model.cliente.Pessoa;
 import com.emprestimo.app.processor.cliente.PessoaProcessor;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,7 +22,7 @@ public class PessoaController {
 
     @GetMapping("/v1/Cliente")
     public PessoaDto findByNome(String nomeCliente){
-        var dto = PessoaDto.builder().nomeCliente(nomeCliente).build();
+        var dto = PessoaDto.builder().nome(nomeCliente).build();
         return pessoaProcessor.findByNome(dto);
     }
 

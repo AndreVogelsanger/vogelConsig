@@ -5,6 +5,8 @@ import com.emprestimo.app.dto.cliente.ContatoDto;
 import com.emprestimo.app.dto.cliente.EnderecoDto;
 import com.emprestimo.app.dto.cliente.PessoaDto;
 import com.emprestimo.app.model.cliente.Banco;
+import com.emprestimo.app.model.cliente.Contato;
+import com.emprestimo.app.model.cliente.Endereco;
 import com.emprestimo.app.model.cliente.Pessoa;
 import com.emprestimo.app.repository.cliente.banco.BancoRepository;
 import com.emprestimo.app.repository.cliente.cliente.PessoaRepository;
@@ -75,7 +77,7 @@ public class PessoaProcessor {
             });
 
             var p = PessoaDto.builder()
-                    .nomeCliente(pessoa.getNome())
+                    .nome(pessoa.getNome())
                     .cpf(pessoa.getCpf())
                     .rg(pessoa.getRg())
                     .dataemissaorg(pessoa.getDataemissaorg())
@@ -152,7 +154,7 @@ public class PessoaProcessor {
         });
 
         var pessoadto = PessoaDto.builder()
-                .nomeCliente(pessoa.getNome())
+                .nome(pessoa.getNome())
                 .cpf(pessoa.getCpf())
                 .rg(pessoa.getRg())
                 .dataemissaorg(pessoa.getDataemissaorg())
@@ -177,7 +179,7 @@ public class PessoaProcessor {
     }
 
     public PessoaDto findByNome(PessoaDto pessoaDto) {
-        var pessoa = pessoaRepository.findByNome(pessoaDto.getNomeCliente());
+        var pessoa = pessoaRepository.findByNome(pessoaDto.getNome());
 
         pessoa.setContatos(contatoRepository.getContatoByIdPessoa(pessoa.getIdpessoa()));
         pessoa.setEnderecos(enderecoRepository.GetEnderecoByIdPessoa(pessoa.getIdpessoa()));
@@ -226,7 +228,7 @@ public class PessoaProcessor {
 
 
         var pessoadto = PessoaDto.builder()
-                .nomeCliente(pessoa.getNome())
+                .nome(pessoa.getNome())
                 .cpf(pessoa.getCpf())
                 .rg(pessoa.getRg())
                 .dataemissaorg(pessoa.getDataemissaorg())
@@ -250,8 +252,50 @@ public class PessoaProcessor {
     }
 
     public void save(PessoaDto pessoaDto) {
+
+        List<Contato> contatosDto = new ArrayList<>();
+        pessoaDto.getContatos().stream().forEach(contato -> {
+            var ctt = Contato.builder()
+                    .numero(contato.getNumero())
+                    .tipocontato(contato.getTipocontato())
+                    .decricao(contato.getDecricao())
+                    .build();
+            contatosDto.add(ctt);
+        });
+
+        List<Endereco> enderecoDto = new ArrayList<>();
+        pessoaDto.getEnderecos().stream().forEach(endereco -> {
+            var end = Endereco.builder()
+                    .logradouro(endereco.getLogradouro())
+                    .tipologradouro(endereco.getTipologradouro())
+                    .numero(endereco.getNumero())
+                    .cep(endereco.getCep())
+                    .uf(endereco.getUf())
+                    .bairro(endereco.getBairro())
+                    .cidade(endereco.getCidade())
+                    .estado(endereco.getEstado())
+                    .build();
+            enderecoDto.add(end);
+        });
+
+        List<Banco> bancoDto = new ArrayList<>();
+        pessoaDto.getBancos().stream().forEach(b -> {
+
+            var ban = Banco.builder()
+                    .numbanco(b.getNumbanco())
+                    .nomebanco(b.getNomebanco())
+                    .agencia(b.getAgencia())
+                    .digitoagencia(b.getDigitoagencia())
+                    .tipoconta(b.getTipoconta())
+                    .numconta(b.getNumconta())
+                    .digitoconta(b.getDigitoconta())
+                    .statusconta(b.getStatusconta())
+                    .build();
+            bancoDto.add(ban);
+        });
+
         var pessoa = Pessoa.builder()
-                .nome(pessoaDto.getNomeCliente())
+                .nome(pessoaDto.getNome())
                 .cpf(pessoaDto.getCpf())
                 .rg(pessoaDto.getRg())
                 .dataemissaorg(pessoaDto.getDataemissaorg())
@@ -267,8 +311,14 @@ public class PessoaProcessor {
                 .indicacao(pessoaDto.getIndicacao())
                 .numbeneficio(pessoaDto.getNumbeneficio())
                 .matricula(pessoaDto.getMatricula())
+                .contatos(contatosDto)
+                .enderecos(enderecoDto)
+                .bancos(bancoDto)
                 .build();
-        pessoaRepository.save(pessoa);
+
+
+          pessoaRepository.save(pessoa);
+
     }
 
     public void delete(PessoaDto pessoaDto) {
@@ -279,7 +329,7 @@ public class PessoaProcessor {
 
     public void update(PessoaDto pessoaDto) {
         var pessoa = Pessoa.builder()
-                .nome(pessoaDto.getNomeCliente())
+                .nome(pessoaDto.getNome())
                 .cpf(pessoaDto.getCpf())
                 .rg(pessoaDto.getRg())
                 .dataemissaorg(pessoaDto.getDataemissaorg())

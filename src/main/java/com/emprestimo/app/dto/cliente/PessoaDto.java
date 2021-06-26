@@ -12,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 public class PessoaDto {
 
-    private String nomeCliente;
+    private String nome;
     private String cpf;
     private String rg;
     private Date dataemissaorg;

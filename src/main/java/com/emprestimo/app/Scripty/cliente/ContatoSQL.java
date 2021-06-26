@@ -7,12 +7,12 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum ContatoSQL {
 
-        SQL_GET_LIST_CONTATO ("SELECT * FROM CONTATO WHERE IDPESSOA = ?");
+        SQL_GET_LIST_CONTATO ("SELECT * FROM CONTATO WHERE IDPESSOA = ?"),
 
-//        /*
-//    Insert
-//     */
-//    SQL_INSERT_CONTATO("insert into contato (numero ,tipocontato,descricao,idpessoa) Values(?,?,?,currval('SQ_PESSOA_IDPESSOA'))),
+        SQL_INSERT_CONTATO("insert into contato" +
+                                  " (numero ,tipocontato,descricao,idpessoa)" +
+                                  " Values(?,?,?,?)");
+
 
 //     /*
 //    Update
