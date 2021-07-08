@@ -8,10 +8,7 @@ import com.emprestimo.app.config.DataBaseConfig;
 import com.emprestimo.app.dto.cliente.BancoDto;
 import com.emprestimo.app.dto.cliente.ContatoDto;
 import com.emprestimo.app.dto.cliente.EnderecoDto;
-import com.emprestimo.app.model.cliente.Banco;
-import com.emprestimo.app.model.cliente.Contato;
-import com.emprestimo.app.model.cliente.Endereco;
-import com.emprestimo.app.model.cliente.Pessoa;
+import com.emprestimo.app.model.cliente.*;
 import com.emprestimo.app.repository.cliente.rowMappers.RowMapperPessoa;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.expression.spel.ast.IntLiteral;
@@ -68,9 +65,6 @@ public class PessoaRepository {
     @Transactional
     public void save(Pessoa pessoa) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
-        Banco banco = new Banco();
-        Endereco endereco = new Endereco();
-        Contato contato = new Contato();
 
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(PessoaSQL.SQL_INSERT_PESSOA.getValue(), new String[]{"idpessoa"});
@@ -94,42 +88,42 @@ public class PessoaRepository {
         }, keyHolder);
 
 
-            pessoa.getBancos().stream().forEach(i->
+            pessoa.getBancos().stream().forEach(banco->
             jdbcTemplate.update(connection -> {
             PreparedStatement bc = connection.prepareStatement(BancoSQL.SQL_INSERT_BANCO.getValue());
-                    bc.setInt(1,pessoa.getBancos().get(0).getNumbanco());
-                    bc.setString(2, pessoa.getBancos().get(0).getNomebanco());
-                    bc.setLong(3, pessoa.getBancos().get(0).getAgencia());
-                    bc.setInt(4, pessoa.getBancos().get(0).getDigitoagencia());
-                    bc.setString(5, pessoa.getBancos().get(0).getTipoconta());
-                    bc.setLong(6, pessoa.getBancos().get(0).getNumconta());
-                    bc.setInt(7, pessoa.getBancos().get(0).getDigitoconta());
-                    bc.setString(8, pessoa.getBancos().get(0).getStatusconta());
+                    bc.setInt(1,banco.getNumbanco());
+                    bc.setString(2, banco.getNomebanco());
+                    bc.setLong(3, banco.getAgencia());
+                    bc.setInt(4, banco.getDigitoagencia());
+                    bc.setString(5, banco.getTipoconta());
+                    bc.setLong(6, banco.getNumconta());
+                    bc.setInt(7, banco.getDigitoconta());
+                    bc.setString(8, banco.getStatusconta());
                     bc.setLong(9, keyHolder.getKey().longValue());
                     return bc;
                 }));
 
-            pessoa.getContatos().stream().forEach( i->
+            pessoa.getContatos().stream().forEach( contato->
             jdbcTemplate.update(connection -> {
                 PreparedStatement ct = connection.prepareStatement(ContatoSQL.SQL_INSERT_CONTATO.getValue());
-                ct.setString(1, pessoa.getContatos().get(0).getNumero());
-                ct.setString(2, pessoa.getContatos().get(0).getTipocontato());
-                ct.setString(3, pessoa.getContatos().get(0).getDecricao());
+                ct.setString(1, contato.getNumero());
+                ct.setString(2, contato.getTipocontato());
+                ct.setString(3, contato.getDecricao());
                 ct.setLong(4, keyHolder.getKey().longValue());
                 return ct;
             }));
 
-            pessoa.getEnderecos().stream().forEach( i->
+            pessoa.getEnderecos().stream().forEach( endereco->
             jdbcTemplate.update(connection -> {
                 PreparedStatement en = connection.prepareStatement(EnderecoSQL.SQL_INSERT_ENDERECO.getValue());
-                en.setString(1, pessoa.getEnderecos().get(0).getLogradouro());
-                en.setLong(2, pessoa.getEnderecos().get(0).getNumero());
-                en.setString(3, pessoa.getEnderecos().get(0).getTipologradouro());
-                en.setString(4, pessoa.getEnderecos().get(0).getCep());
-                en.setString(5, pessoa.getEnderecos().get(0).getUf());
-                en.setString(6, pessoa.getEnderecos().get(0).getBairro());
-                en.setString(7, pessoa.getEnderecos().get(0).getCidade());
-                en.setString(8, pessoa.getEnderecos().get(0).getEstado());
+                en.setString(1, endereco.getLogradouro());
+                en.setLong(2, endereco.getNumero());
+                en.setString(3, endereco.getTipologradouro());
+                en.setString(4, endereco.getCep());
+                en.setString(5, endereco.getUf());
+                en.setString(6, endereco.getBairro());
+                en.setString(7, endereco.getCidade());
+                en.setString(8, endereco.getEstado());
                 en.setLong(9, keyHolder.getKey().longValue());
                 return en;
             }));

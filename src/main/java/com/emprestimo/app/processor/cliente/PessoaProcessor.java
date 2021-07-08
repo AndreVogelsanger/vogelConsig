@@ -253,19 +253,19 @@ public class PessoaProcessor {
 
     public void save(PessoaDto pessoaDto) {
 
-        List<Contato> contatosDto = new ArrayList<>();
+        List<Contato> contatos = new ArrayList<>();
         pessoaDto.getContatos().stream().forEach(contato -> {
             var ctt = Contato.builder()
                     .numero(contato.getNumero())
                     .tipocontato(contato.getTipocontato())
                     .decricao(contato.getDecricao())
                     .build();
-            contatosDto.add(ctt);
+            contatos.add(ctt);
         });
 
-        List<Endereco> enderecoDto = new ArrayList<>();
+        List<Endereco> end = new ArrayList<>();
         pessoaDto.getEnderecos().stream().forEach(endereco -> {
-            var end = Endereco.builder()
+            var e = Endereco.builder()
                     .logradouro(endereco.getLogradouro())
                     .tipologradouro(endereco.getTipologradouro())
                     .numero(endereco.getNumero())
@@ -275,12 +275,11 @@ public class PessoaProcessor {
                     .cidade(endereco.getCidade())
                     .estado(endereco.getEstado())
                     .build();
-            enderecoDto.add(end);
+            end.add(e);
         });
 
-        List<Banco> bancoDto = new ArrayList<>();
+        List<Banco> banco = new ArrayList<>();
         pessoaDto.getBancos().stream().forEach(b -> {
-
             var ban = Banco.builder()
                     .numbanco(b.getNumbanco())
                     .nomebanco(b.getNomebanco())
@@ -291,7 +290,7 @@ public class PessoaProcessor {
                     .digitoconta(b.getDigitoconta())
                     .statusconta(b.getStatusconta())
                     .build();
-            bancoDto.add(ban);
+            banco.add(ban);
         });
 
         var pessoa = Pessoa.builder()
@@ -311,11 +310,10 @@ public class PessoaProcessor {
                 .indicacao(pessoaDto.getIndicacao())
                 .numbeneficio(pessoaDto.getNumbeneficio())
                 .matricula(pessoaDto.getMatricula())
-                .contatos(contatosDto)
-                .enderecos(enderecoDto)
-                .bancos(bancoDto)
+                .contatos(contatos)
+                .enderecos(end)
+                .bancos(banco)
                 .build();
-
 
           pessoaRepository.save(pessoa);
 

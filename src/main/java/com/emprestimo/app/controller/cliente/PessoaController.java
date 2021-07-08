@@ -33,6 +33,7 @@ public class PessoaController {
     }
 
     @DeleteMapping("/v1/CpfDeletar")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(String cpf){
         var dto = PessoaDto.builder().cpf(cpf).build();
         pessoaProcessor.delete(dto);
@@ -51,10 +52,6 @@ public class PessoaController {
     }
 
 
-    @PutMapping("/v1/CpfAtualizar")
-    @ResponseStatus(HttpStatus.OK)
-    public void update(@RequestBody PessoaDto pessoaDto){
-       pessoaProcessor.update(pessoaDto);
-    }
+
 
 }
