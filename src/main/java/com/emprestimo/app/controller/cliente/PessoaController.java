@@ -16,36 +16,36 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor(onConstructor = @__(@Inject))
+@RequestMapping("/v1/Cliente")
 public class PessoaController {
 
     private final PessoaProcessor pessoaProcessor;
 
-    @GetMapping("/v1/Cliente")
+    @GetMapping("BuscaCliente")
     public PessoaDto findByNome(String nomeCliente){
         var dto = PessoaDto.builder().nome(nomeCliente).build();
         return pessoaProcessor.findByNome(dto);
     }
 
-    @GetMapping("/v1/Cpf")
+    @GetMapping("BuscaCpf")
     public PessoaDto findBycpf(String cpf){
         var dtopessoa = PessoaDto.builder().cpf(cpf).build();
         return pessoaProcessor.findByCpf(dtopessoa);
     }
 
-    @DeleteMapping("/v1/CpfDeletar")
+    @GetMapping("ListaCliente")
+    public List<PessoaDto> findAll(){
+        return pessoaProcessor.findAll();
+    }
+ 
+    @DeleteMapping("DeletarPorCpf")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(String cpf){
         var dto = PessoaDto.builder().cpf(cpf).build();
         pessoaProcessor.delete(dto);
     }
 
-    @GetMapping("/v1/ListaCliente")
-    public List<PessoaDto> findAll(){
-        return pessoaProcessor.findAll();
-    }
-
-
-    @PostMapping("/v1/ClienteNovo")
+    @PostMapping("ClienteNovo")
     @ResponseStatus(HttpStatus.CREATED)
     public void save(@RequestBody PessoaDto pessoaDto){
         pessoaProcessor.save(pessoaDto);
