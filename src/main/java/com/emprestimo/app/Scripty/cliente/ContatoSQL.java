@@ -11,13 +11,12 @@ public enum ContatoSQL {
 
         SQL_INSERT_CONTATO("insert into contato" +
                                   " (numero ,tipocontato,descricao,idpessoa)" +
-                                  " Values(?,?,?,?)");
+                                  " Values(?,?,?,?)"),
+
+        SQL_UPDATE_CONTATO("UPDATE CONTATO SET " +
+                "NUMERO = ?, TIPOCONTATO = ?, DESCRICAO = ? " +
+                "WHERE IDCONTATO = ?");
 
 
-//     /*
-//    Update
-//     */
-//    SQL_UPDATE_CONTATO();
-//
     private String value;
 }

@@ -15,6 +15,8 @@ public enum PessoaSQL{
 
     SQL_GET_LIST_PESSOAS ("SELECT * FROM PESSOA"),
 
+    SQL_GET_IDPESSOA ("select IDPESSOA from Pessoa WHERE CPF = ?"),
+
     /*
     Insert
      */

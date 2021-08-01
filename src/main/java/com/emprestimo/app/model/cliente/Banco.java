@@ -12,7 +12,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Banco {
 
-    private long idpessoa;
+    private Long idbanco;
+    private Long idpessoa;
     private int numbanco;
     private String nomebanco;
     private long agencia;

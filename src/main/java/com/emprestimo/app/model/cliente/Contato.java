@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Contato {
 
+    private Long idcontato;
     private Long idpessoa;
     private String numero;
     private String tipocontato;

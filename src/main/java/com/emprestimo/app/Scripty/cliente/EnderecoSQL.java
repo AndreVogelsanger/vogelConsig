@@ -11,12 +11,13 @@ public enum EnderecoSQL {
 
         SQL_INSERT_ENDERECO("INSERT INTO ENDERECO" +
                 " (LOGRADOURO ,NUMERO,TIPOLOGRADOURO,CEP,UF,BAIRRO,CIDADE,ESTADO,IDPESSOA)"+
-                " VALUES(?,?,?,?,?,?,?,?,?)");
+                " VALUES(?,?,?,?,?,?,?,?,?)"),
 
-//     /*
-//    Update
-//     */
-//
+        SQL_UPDATE_ENDERECO("UPDATE ENDERECO SET " +
+                "LOGRADOURO = ?, NUMERO = ?, TIPOLOGRADOURO = ?, CEP = ?," +
+                " UF = ?, BAIRRO = ?, CIDADE = ?, ESTADO = ? " +
+                "WHERE IDENDERECO = ?");
+
         private String value;
 
 }

@@ -14,6 +14,7 @@ import javax.inject.Named;
 @NoArgsConstructor
 public class Endereco {
 
+    private Long idendereco;
     private Long idpessoa;
     private String logradouro;
     private String tipologradouro;
@@ -22,6 +23,6 @@ public class Endereco {
     private String bairro;
     private String cidade;
     private String estado;
-    private long numero;
+    private Long numero;
 
 }

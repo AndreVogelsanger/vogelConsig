@@ -5,13 +5,9 @@ import com.emprestimo.app.Scripty.cliente.ContatoSQL;
 import com.emprestimo.app.Scripty.cliente.EnderecoSQL;
 import com.emprestimo.app.Scripty.cliente.PessoaSQL;
 import com.emprestimo.app.config.DataBaseConfig;
-import com.emprestimo.app.dto.cliente.BancoDto;
-import com.emprestimo.app.dto.cliente.ContatoDto;
-import com.emprestimo.app.dto.cliente.EnderecoDto;
 import com.emprestimo.app.model.cliente.*;
 import com.emprestimo.app.repository.cliente.rowMappers.RowMapperPessoa;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.expression.spel.ast.IntLiteral;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
@@ -22,7 +18,6 @@ import javax.inject.Named;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
-import java.sql.Statement;
 import java.util.List;
 
 
@@ -131,7 +126,7 @@ public class PessoaRepository {
     }
 
 
-    public Pessoa update(Pessoa pessoa) {
+    public Pessoa updateCliente(Pessoa pessoa) {
         jdbcTemplate.update(PessoaSQL.SQL_UPDATE_PESSOA.getValue(),
                 ps -> {
                     ps.setString(1, pessoa.getNome());
@@ -154,4 +149,7 @@ public class PessoaRepository {
                 });
         return pessoa;
     }
+
+
+
 }

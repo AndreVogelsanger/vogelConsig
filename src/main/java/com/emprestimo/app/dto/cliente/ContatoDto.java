@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ContatoDto {
 
+    private Long idcontato;
     private String numero;
     private String tipocontato;
     private String decricao;

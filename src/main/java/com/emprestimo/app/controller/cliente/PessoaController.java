@@ -38,7 +38,7 @@ public class PessoaController {
         return pessoaProcessor.findAll();
     }
  
-    @DeleteMapping("DeletarPorCpf")
+    @DeleteMapping("Deletar")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(String cpf){
         var dto = PessoaDto.builder().cpf(cpf).build();
@@ -50,8 +50,6 @@ public class PessoaController {
     public void save(@RequestBody PessoaDto pessoaDto){
         pessoaProcessor.save(pessoaDto);
     }
-
-
 
 
 }

@@ -325,26 +325,4 @@ public class PessoaProcessor {
     }
 
 
-    public void update(PessoaDto pessoaDto) {
-        var pessoa = Pessoa.builder()
-                .nome(pessoaDto.getNome())
-                .cpf(pessoaDto.getCpf())
-                .rg(pessoaDto.getRg())
-                .dataemissaorg(pessoaDto.getDataemissaorg())
-                .ufrg(pessoaDto.getUfrg())
-                .renda(pessoaDto.getRenda())
-                .datanascimento(pessoaDto.getDatanascimento())
-                .naturalidae(pessoaDto.getNaturalidae())
-                .estadonascimento(pessoaDto.getEstadonascimento())
-                .estadocivil(pessoaDto.getEstadocivil())
-                .nomepai(pessoaDto.getNomepai())
-                .nomemae(pessoaDto.getNomemae())
-                .email(pessoaDto.getEmail())
-                .indicacao(pessoaDto.getIndicacao())
-                .numbeneficio(pessoaDto.getNumbeneficio())
-                .matricula(pessoaDto.getMatricula())
-                .build();
-        pessoaRepository.update(pessoa);
-    }
-
 }

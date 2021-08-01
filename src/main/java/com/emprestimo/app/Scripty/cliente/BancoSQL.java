@@ -8,16 +8,18 @@ import lombok.Getter;
 public enum BancoSQL {
 
     SQL_GET_LIST_BANCO ("SELECT * FROM BANCO WHERE IDPESSOA = ?"),
+    SQL_GET_ID_BANCO ("SELECT * FROM BANCO WHERE NUMBANCO = ?"),
 
     SQL_INSERT_BANCO ("INSERT INTO banco"+
                       " (NUMBANCO ,NOMEBANCO,AGENCIA,DIGITOAGENCIA,TIPOCONTA,NUMCONTA,DIGITOCONTA,STATUSCONTA,IDPESSOA)" +
-                      " VALUES(?,?,?,?,?,?,?,?,?)");
+                      " VALUES(?,?,?,?,?,?,?,?,?)"),
 
 
-    //     /*
-//    Update
-//     */
-//
+    SQL_UPDATE_BANCO("UPDATE BANCO SET " +
+            "NUMBANCO = ?,NOMEBANCO = ?,AGENCIA = ?,DIGITOAGENCIA = ?, TIPOCONTA = ?," +
+            "NUMCONTA = ?,DIGITOCONTA = ?, STATUSCONTA = ? " +
+            "WHERE IDBANCO = ?");
+
     private String value;
 
 

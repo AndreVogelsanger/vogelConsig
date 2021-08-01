@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 public class EnderecoDto {
 
 
+    private Long idendereco;
     private String logradouro;
     private String tipologradouro;
     private String cep;

@@ -15,6 +15,7 @@ public class RowMapperBanco implements RowMapper<Banco> {
     public Banco mapRow(ResultSet rs, int rowNum) throws SQLException {
 
         return Banco.builder()
+                .idbanco(rs.getLong("idbanco"))
                 .idpessoa(rs.getLong("idpessoa"))
                 .numbanco(rs.getInt("numbanco"))
                 .nomebanco(rs.getString("nomebanco"))
