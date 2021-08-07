@@ -1,6 +1,8 @@
 package com.emprestimo.app.model.cliente;
 
-import com.emprestimo.app.dto.cliente.PessoaDto;
+import com.emprestimo.app.model.banco.Banco;
+import com.emprestimo.app.model.contato.Contato;
+import com.emprestimo.app.model.endereco.Endereco;
 import lombok.*;
 
 import java.math.BigDecimal;

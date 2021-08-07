@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan("com.emprestimo")
+//@ComponentScan("com.emprestimo")
 public class EmprestimoAppApplication {
 
 	public static void main(String[] args) {

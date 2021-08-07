@@ -1,17 +1,17 @@
 package com.emprestimo.app.processor.cliente;
 
-import com.emprestimo.app.dto.cliente.BancoDto;
-import com.emprestimo.app.dto.cliente.ContatoDto;
-import com.emprestimo.app.dto.cliente.EnderecoDto;
+import com.emprestimo.app.dto.banco.BancoDto;
+import com.emprestimo.app.dto.contato.ContatoDto;
+import com.emprestimo.app.dto.endereco.EnderecoDto;
 import com.emprestimo.app.dto.cliente.PessoaDto;
-import com.emprestimo.app.model.cliente.Banco;
-import com.emprestimo.app.model.cliente.Contato;
-import com.emprestimo.app.model.cliente.Endereco;
+import com.emprestimo.app.model.banco.Banco;
+import com.emprestimo.app.model.contato.Contato;
+import com.emprestimo.app.model.endereco.Endereco;
 import com.emprestimo.app.model.cliente.Pessoa;
-import com.emprestimo.app.repository.cliente.banco.BancoRepository;
-import com.emprestimo.app.repository.cliente.cliente.PessoaRepository;
-import com.emprestimo.app.repository.cliente.contato.ContatoRepository;
-import com.emprestimo.app.repository.cliente.endereco.EnderecoRepository;
+import com.emprestimo.app.repository.banco.BancoRepository;
+import com.emprestimo.app.repository.cliente.PessoaRepository;
+import com.emprestimo.app.repository.contato.ContatoRepository;
+import com.emprestimo.app.repository.endereco.EnderecoRepository;
 import lombok.AllArgsConstructor;
 
 import javax.inject.Named;
@@ -29,20 +29,20 @@ public class PessoaProcessor {
 
     public List<PessoaDto> findAll() {
         List<PessoaDto> pessoas = new ArrayList<>();
-        pessoaRepository.findAll().stream().forEach(pessoa -> {
+        pessoaRepository.findAll().forEach(pessoa -> {
 
             pessoa.setContatos(contatoRepository.getContatoByIdPessoa(pessoa.getIdpessoa()));
             pessoa.setEnderecos(enderecoRepository.GetEnderecoByIdPessoa(pessoa.getIdpessoa()));
             pessoa.setBancos(bancoRepository.GetBancoByIdPessoa(pessoa.getIdpessoa()));
 
-            List<ContatoDto> contatosDto = new ArrayList<>();
-            pessoa.getContatos().stream().forEach(contato -> {
+            List<ContatoDto> contatos = new ArrayList<>();
+            pessoa.getContatos().forEach(contato -> {
                 var ctt = ContatoDto.builder()
                         .numero(contato.getNumero())
-                        .tipocontato(contato.getTipocontato())
+                            .tipocontato(contato.getTipocontato())
                         .decricao(contato.getDecricao())
                         .build();
-                contatosDto.add(ctt);
+                contatos.add(ctt);
             });
 
             List<EnderecoDto> enderecoDto = new ArrayList<>();
@@ -93,7 +93,7 @@ public class PessoaProcessor {
                     .indicacao(pessoa.getIndicacao())
                     .numbeneficio(pessoa.getNumbeneficio())
                     .matricula(pessoa.getMatricula())
-                    .contatos(contatosDto)
+                    .contatos(contatos)
                     .enderecos(enderecoDto)
                     .bancos(bancoDto)
                     .build();
