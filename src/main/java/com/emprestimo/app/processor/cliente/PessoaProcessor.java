@@ -4,14 +4,17 @@ import com.emprestimo.app.dto.banco.BancoDto;
 import com.emprestimo.app.dto.contato.ContatoDto;
 import com.emprestimo.app.dto.endereco.EnderecoDto;
 import com.emprestimo.app.dto.cliente.PessoaDto;
+import com.emprestimo.app.dto.registro.RegistroDto;
 import com.emprestimo.app.model.banco.Banco;
 import com.emprestimo.app.model.contato.Contato;
 import com.emprestimo.app.model.endereco.Endereco;
 import com.emprestimo.app.model.cliente.Pessoa;
+import com.emprestimo.app.model.registro.Registro;
 import com.emprestimo.app.repository.banco.BancoRepository;
 import com.emprestimo.app.repository.cliente.PessoaRepository;
 import com.emprestimo.app.repository.contato.ContatoRepository;
 import com.emprestimo.app.repository.endereco.EnderecoRepository;
+import com.emprestimo.app.repository.registro.RegistroRepository;
 import lombok.AllArgsConstructor;
 
 import javax.inject.Named;
@@ -26,6 +29,7 @@ public class PessoaProcessor {
     private final ContatoRepository contatoRepository;
     private final EnderecoRepository enderecoRepository;
     private final BancoRepository bancoRepository;
+    private final RegistroRepository registroRepository;
 
     public List<PessoaDto> findAll() {
         List<PessoaDto> pessoas = new ArrayList<>();
@@ -34,12 +38,22 @@ public class PessoaProcessor {
             pessoa.setContatos(contatoRepository.getContatoByIdPessoa(pessoa.getIdpessoa()));
             pessoa.setEnderecos(enderecoRepository.GetEnderecoByIdPessoa(pessoa.getIdpessoa()));
             pessoa.setBancos(bancoRepository.GetBancoByIdPessoa(pessoa.getIdpessoa()));
+            pessoa.setRegistros(registroRepository.GetRegistroByIdPessoa(pessoa.getIdpessoa()));
+
+            List<RegistroDto> registros = new ArrayList<>();
+            pessoa.getRegistros().forEach(registro -> {
+                var reg = RegistroDto.builder()
+                        .numbeneficio(registro.getNumbeneficio())
+                        .matricula(registro.getMatricula())
+                        .build();
+                registros.add(reg);
+            });
 
             List<ContatoDto> contatos = new ArrayList<>();
             pessoa.getContatos().forEach(contato -> {
                 var ctt = ContatoDto.builder()
                         .numero(contato.getNumero())
-                            .tipocontato(contato.getTipocontato())
+                        .tipocontato(contato.getTipocontato())
                         .decricao(contato.getDecricao())
                         .build();
                 contatos.add(ctt);
@@ -91,8 +105,7 @@ public class PessoaProcessor {
                     .nomemae(pessoa.getNomemae())
                     .email(pessoa.getEmail())
                     .indicacao(pessoa.getIndicacao())
-                    .numbeneficio(pessoa.getNumbeneficio())
-                    .matricula(pessoa.getMatricula())
+                    .registros(registros)
                     .contatos(contatos)
                     .enderecos(enderecoDto)
                     .bancos(bancoDto)
@@ -111,7 +124,16 @@ public class PessoaProcessor {
         pessoa.setContatos(contatoRepository.getContatoByIdPessoa(pessoa.getIdpessoa()));
         pessoa.setEnderecos(enderecoRepository.GetEnderecoByIdPessoa(pessoa.getIdpessoa()));
         pessoa.setBancos(bancoRepository.GetBancoByIdPessoa(pessoa.getIdpessoa()));
+        pessoa.setRegistros(registroRepository.GetRegistroByIdPessoa(pessoa.getIdpessoa()));
 
+        List<RegistroDto> registros = new ArrayList<>();
+        pessoa.getRegistros().forEach(registro -> {
+            var reg = RegistroDto.builder()
+                    .numbeneficio(registro.getNumbeneficio())
+                    .matricula(registro.getMatricula())
+                    .build();
+            registros.add(reg);
+        });
         List<ContatoDto> contatosDto = new ArrayList<>();
         pessoa.getContatos().stream().forEach(contato -> {
             var ctt = ContatoDto.builder()
@@ -168,8 +190,7 @@ public class PessoaProcessor {
                 .nomemae(pessoa.getNomemae())
                 .email(pessoa.getEmail())
                 .indicacao(pessoa.getIndicacao())
-                .numbeneficio(pessoa.getNumbeneficio())
-                .matricula(pessoa.getMatricula())
+                .registros(registros)
                 .contatos(contatosDto)
                 .enderecos(enderecoDto)
                 .bancos(bancoDto)
@@ -184,6 +205,16 @@ public class PessoaProcessor {
         pessoa.setContatos(contatoRepository.getContatoByIdPessoa(pessoa.getIdpessoa()));
         pessoa.setEnderecos(enderecoRepository.GetEnderecoByIdPessoa(pessoa.getIdpessoa()));
         pessoa.setBancos(bancoRepository.GetBancoByIdPessoa(pessoa.getIdpessoa()));
+        pessoa.setRegistros(registroRepository.GetRegistroByIdPessoa(pessoa.getIdpessoa()));
+
+        List<RegistroDto> registros = new ArrayList<>();
+        pessoa.getRegistros().forEach(registro -> {
+            var reg = RegistroDto.builder()
+                    .numbeneficio(registro.getNumbeneficio())
+                    .matricula(registro.getMatricula())
+                    .build();
+            registros.add(reg);
+        });
 
         List<ContatoDto> contatosDto = new ArrayList<>();
         pessoa.getContatos().stream().forEach(contato -> {
@@ -242,8 +273,7 @@ public class PessoaProcessor {
                 .nomemae(pessoa.getNomemae())
                 .email(pessoa.getEmail())
                 .indicacao(pessoa.getIndicacao())
-                .numbeneficio(pessoa.getNumbeneficio())
-                .matricula(pessoa.getMatricula())
+                .registros(registros)
                 .contatos(contatosDto)
                 .enderecos(enderecoDto)
                 .bancos(bancoDto)
@@ -253,8 +283,17 @@ public class PessoaProcessor {
 
     public void save(PessoaDto pessoaDto) {
 
+        List<Registro> registros = new ArrayList<>();
+        pessoaDto.getRegistros().forEach(registro -> {
+            var reg = Registro.builder()
+                    .numbeneficio(registro.getNumbeneficio())
+                    .matricula(registro.getMatricula())
+                    .build();
+            registros.add(reg);
+        });
+
         List<Contato> contatos = new ArrayList<>();
-        pessoaDto.getContatos().stream().forEach(contato -> {
+        pessoaDto.getContatos().forEach(contato -> {
             var ctt = Contato.builder()
                     .numero(contato.getNumero())
                     .tipocontato(contato.getTipocontato())
@@ -264,7 +303,7 @@ public class PessoaProcessor {
         });
 
         List<Endereco> end = new ArrayList<>();
-        pessoaDto.getEnderecos().stream().forEach(endereco -> {
+        pessoaDto.getEnderecos().forEach(endereco -> {
             var e = Endereco.builder()
                     .logradouro(endereco.getLogradouro())
                     .tipologradouro(endereco.getTipologradouro())
@@ -279,7 +318,7 @@ public class PessoaProcessor {
         });
 
         List<Banco> banco = new ArrayList<>();
-        pessoaDto.getBancos().stream().forEach(b -> {
+        pessoaDto.getBancos().forEach(b -> {
             var ban = Banco.builder()
                     .numbanco(b.getNumbanco())
                     .nomebanco(b.getNomebanco())
@@ -308,8 +347,7 @@ public class PessoaProcessor {
                 .nomemae(pessoaDto.getNomemae())
                 .email(pessoaDto.getEmail())
                 .indicacao(pessoaDto.getIndicacao())
-                .numbeneficio(pessoaDto.getNumbeneficio())
-                .matricula(pessoaDto.getMatricula())
+                .registros(registros)
                 .contatos(contatos)
                 .enderecos(end)
                 .bancos(banco)

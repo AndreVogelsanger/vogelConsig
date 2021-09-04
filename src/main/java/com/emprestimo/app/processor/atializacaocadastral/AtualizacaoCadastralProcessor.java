@@ -45,8 +45,6 @@ public class AtualizacaoCadastralProcessor {
                 .nomemae(pessoaDto.getNomemae())
                 .email(pessoaDto.getEmail())
                 .indicacao(pessoaDto.getIndicacao())
-                .numbeneficio(pessoaDto.getNumbeneficio())
-                .matricula(pessoaDto.getMatricula())
                 .build();
         pessoaRepository.updateCliente(pessoa);
     }

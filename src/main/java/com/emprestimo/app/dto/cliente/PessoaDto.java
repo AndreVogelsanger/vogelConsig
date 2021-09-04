@@ -3,6 +3,8 @@ package com.emprestimo.app.dto.cliente;
 import com.emprestimo.app.dto.banco.BancoDto;
 import com.emprestimo.app.dto.contato.ContatoDto;
 import com.emprestimo.app.dto.endereco.EnderecoDto;
+import com.emprestimo.app.dto.registro.RegistroDto;
+
 import lombok.*;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -28,11 +30,10 @@ public class PessoaDto {
     private String nomemae;
     private String email;
     private String indicacao;
-    private String numbeneficio;
-    private String matricula;
 
     private List<ContatoDto> contatos;
     private List<EnderecoDto> enderecos;
     private List<BancoDto> bancos;
+    private List<RegistroDto> registros;
 
 }

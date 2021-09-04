@@ -1,10 +1,8 @@
 package com.emprestimo.app.repository.cliente;
 
-import com.emprestimo.app.Script.BancoSQL;
-import com.emprestimo.app.Script.ContatoSQL;
-import com.emprestimo.app.Script.EnderecoSQL;
-import com.emprestimo.app.Script.PessoaSQL;
+import com.emprestimo.app.Script.*;
 import com.emprestimo.app.config.DataBaseConfig;
+import com.emprestimo.app.dto.registro.RegistroDto;
 import com.emprestimo.app.model.cliente.Pessoa;
 import com.emprestimo.app.repository.rowMappers.RowMapperPessoa;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -77,13 +75,11 @@ public class PessoaRepository {
             ps.setString(12, pessoa.getNomemae());
             ps.setString(13, pessoa.getEmail());
             ps.setString(14, pessoa.getIndicacao());
-            ps.setString(15, pessoa.getNumbeneficio());
-            ps.setString(16, pessoa.getMatricula());
             return ps;
         }, keyHolder);
 
 
-            pessoa.getBancos().stream().forEach(banco->
+            pessoa.getBancos().forEach(banco->
             jdbcTemplate.update(connection -> {
             PreparedStatement bc = connection.prepareStatement(BancoSQL.SQL_INSERT_BANCO.getValue());
                     bc.setInt(1,banco.getNumbanco());
@@ -98,7 +94,7 @@ public class PessoaRepository {
                     return bc;
                 }));
 
-            pessoa.getContatos().stream().forEach( contato->
+            pessoa.getContatos().forEach( contato->
             jdbcTemplate.update(connection -> {
                 PreparedStatement ct = connection.prepareStatement(ContatoSQL.SQL_INSERT_CONTATO.getValue());
                 ct.setString(1, contato.getNumero());
@@ -108,7 +104,7 @@ public class PessoaRepository {
                 return ct;
             }));
 
-            pessoa.getEnderecos().stream().forEach( endereco->
+            pessoa.getEnderecos().forEach( endereco->
             jdbcTemplate.update(connection -> {
                 PreparedStatement en = connection.prepareStatement(EnderecoSQL.SQL_INSERT_ENDERECO.getValue());
                 en.setString(1, endereco.getLogradouro());
@@ -121,6 +117,16 @@ public class PessoaRepository {
                 en.setString(8, endereco.getEstado());
                 en.setLong(9, keyHolder.getKey().longValue());
                 return en;
+            }));
+
+            pessoa.getRegistros().forEach(registro ->
+                jdbcTemplate.update(connection ->{
+                    PreparedStatement re = connection.prepareStatement(RegistroSQL.SQL_INSERT_REGISTRO.getValue());
+                    re.setLong(1,registro.getNumbeneficio());
+                    re.setLong(2,registro.getMatricula());
+                    re.setLong(3,keyHolder.getKey().longValue());
+                return re;
+
             }));
 
     }
@@ -143,13 +149,9 @@ public class PessoaRepository {
                     ps.setString(12, pessoa.getNomemae());
                     ps.setString(13, pessoa.getEmail());
                     ps.setString(14, pessoa.getIndicacao());
-                    ps.setString(15, pessoa.getNumbeneficio());
-                    ps.setString(16, pessoa.getMatricula());
                     ps.setString(17, pessoa.getCpf());
                 });
         return pessoa;
     }
-
-
 
 }

@@ -3,6 +3,7 @@ package com.emprestimo.app.model.cliente;
 import com.emprestimo.app.model.banco.Banco;
 import com.emprestimo.app.model.contato.Contato;
 import com.emprestimo.app.model.endereco.Endereco;
+import com.emprestimo.app.model.registro.Registro;
 import lombok.*;
 
 import java.math.BigDecimal;
@@ -30,11 +31,10 @@ public class Pessoa {
     private String nomemae;
     private String email;
     private String indicacao;
-    private String numbeneficio;
-    private String matricula;
 
     private List<Contato> contatos;
     private List<Endereco> enderecos;
     private List<Banco> bancos;
+    private List<Registro> registros;
 
 }
