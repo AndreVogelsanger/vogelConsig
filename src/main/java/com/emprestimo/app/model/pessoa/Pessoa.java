@@ -1,6 +1,6 @@
-package com.emprestimo.app.model.cliente;
+package com.emprestimo.app.model.pessoa;
 
-import com.emprestimo.app.model.banco.Banco;
+import com.emprestimo.app.model.dadosbancario.DadosBancario;
 import com.emprestimo.app.model.contato.Contato;
 import com.emprestimo.app.model.endereco.Endereco;
 import com.emprestimo.app.model.registro.Registro;
@@ -34,7 +34,7 @@ public class Pessoa {
 
     private List<Contato> contatos;
     private List<Endereco> enderecos;
-    private List<Banco> bancos;
+    private List<DadosBancario> dadosbancario;
     private List<Registro> registros;
 
 }

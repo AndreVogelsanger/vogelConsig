@@ -1,11 +1,11 @@
 package com.emprestimo.app.controller.atualizacaocadastral;
 
-import com.emprestimo.app.dto.banco.BancoDto;
+import com.emprestimo.app.dto.dadosbancario.DadosBancarioDto;
 import com.emprestimo.app.dto.contato.ContatoDto;
 import com.emprestimo.app.dto.endereco.EnderecoDto;
-import com.emprestimo.app.dto.cliente.PessoaDto;
+import com.emprestimo.app.dto.pessoa.PessoaDto;
 import com.emprestimo.app.processor.atializacaocadastral.AtualizacaoCadastralProcessor;
-import com.emprestimo.app.processor.cliente.PessoaProcessor;
+import com.emprestimo.app.processor.pessoa.PessoaProcessor;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -28,10 +28,10 @@ public class AtualizacaoCadastralController {
         atualizacaoCadastralProcessor.updateCliente(pessoaDto);
     }
 
-    @PutMapping("Banco")
+    @PutMapping("DadosBancario")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateBanco(@RequestBody List<BancoDto> bancoDto){
-        atualizacaoCadastralProcessor.updateBanco(bancoDto);
+    public void updateBanco(@RequestBody List<DadosBancarioDto> dadosBancarioDto){
+        atualizacaoCadastralProcessor.updateBanco(dadosBancarioDto);
     }
 
     @PutMapping("Contato")

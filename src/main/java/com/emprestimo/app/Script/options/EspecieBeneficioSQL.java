@@ -1,14 +1,15 @@
 package com.emprestimo.app.Script.options;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum ProdutoSQL {
+public enum EspecieBeneficioSQL {
 
-    SQL_GETPRODUTO ("SELECT * FROM PRODUTO");
+    SQL_GETESPECIEBENEFICIO ("SELECT * FROM ESPECIEBENEFICIO");
 
-    public String value;
+    private String value;
 
 }

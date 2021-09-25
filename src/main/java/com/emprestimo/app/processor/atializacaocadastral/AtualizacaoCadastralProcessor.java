@@ -1,16 +1,16 @@
 package com.emprestimo.app.processor.atializacaocadastral;
 
 
-import com.emprestimo.app.dto.banco.BancoDto;
+import com.emprestimo.app.dto.dadosbancario.DadosBancarioDto;
 import com.emprestimo.app.dto.contato.ContatoDto;
 import com.emprestimo.app.dto.endereco.EnderecoDto;
-import com.emprestimo.app.dto.cliente.PessoaDto;
-import com.emprestimo.app.model.banco.Banco;
+import com.emprestimo.app.dto.pessoa.PessoaDto;
+import com.emprestimo.app.model.dadosbancario.DadosBancario;
 import com.emprestimo.app.model.contato.Contato;
 import com.emprestimo.app.model.endereco.Endereco;
-import com.emprestimo.app.model.cliente.Pessoa;
-import com.emprestimo.app.repository.banco.BancoRepository;
-import com.emprestimo.app.repository.cliente.PessoaRepository;
+import com.emprestimo.app.model.pessoa.Pessoa;
+import com.emprestimo.app.repository.dadosbancario.DadosBancarioRepository;
+import com.emprestimo.app.repository.pessoa.PessoaRepository;
 import com.emprestimo.app.repository.contato.ContatoRepository;
 import com.emprestimo.app.repository.endereco.EnderecoRepository;
 import lombok.AllArgsConstructor;
@@ -24,7 +24,7 @@ public class AtualizacaoCadastralProcessor {
 
 
     private final PessoaRepository pessoaRepository;
-    private final BancoRepository bancoRepository;
+    private final DadosBancarioRepository dadosBancarioRepository;
     private final ContatoRepository contatoRepository;
     private final EnderecoRepository enderecoRepository;
 
@@ -50,11 +50,11 @@ public class AtualizacaoCadastralProcessor {
     }
 
 
-    public void updateBanco(List<BancoDto> bancoDto) {
+    public void updateBanco(List<DadosBancarioDto> dadosBancarioDto) {
 
-        bancoDto.stream().forEach(bancos->{
-        var banco = Banco.builder()
-                .idbanco(bancos.getIdbanco())
+        dadosBancarioDto.stream().forEach(bancos->{
+        var banco = DadosBancario.builder()
+                .iddadosbancario(bancos.getIddadosbancario())
                 .numbanco(bancos.getNumbanco())
                 .nomebanco(bancos.getNomebanco())
                 .agencia(bancos.getAgencia())
@@ -64,7 +64,7 @@ public class AtualizacaoCadastralProcessor {
                 .digitoconta(bancos.getDigitoconta())
                 .statusconta(bancos.getStatusconta())
                 .build();
-        bancoRepository.updateBanco(banco);
+        dadosBancarioRepository.updateDadosBancario(banco);
         });
     }
 

@@ -1,17 +1,17 @@
-package com.emprestimo.app.processor.cliente;
+package com.emprestimo.app.processor.pessoa;
 
-import com.emprestimo.app.dto.banco.BancoDto;
+import com.emprestimo.app.dto.dadosbancario.DadosBancarioDto;
 import com.emprestimo.app.dto.contato.ContatoDto;
 import com.emprestimo.app.dto.endereco.EnderecoDto;
-import com.emprestimo.app.dto.cliente.PessoaDto;
+import com.emprestimo.app.dto.pessoa.PessoaDto;
 import com.emprestimo.app.dto.registro.RegistroDto;
-import com.emprestimo.app.model.banco.Banco;
+import com.emprestimo.app.model.dadosbancario.DadosBancario;
 import com.emprestimo.app.model.contato.Contato;
 import com.emprestimo.app.model.endereco.Endereco;
-import com.emprestimo.app.model.cliente.Pessoa;
+import com.emprestimo.app.model.pessoa.Pessoa;
 import com.emprestimo.app.model.registro.Registro;
-import com.emprestimo.app.repository.banco.BancoRepository;
-import com.emprestimo.app.repository.cliente.PessoaRepository;
+import com.emprestimo.app.repository.dadosbancario.DadosBancarioRepository;
+import com.emprestimo.app.repository.pessoa.PessoaRepository;
 import com.emprestimo.app.repository.contato.ContatoRepository;
 import com.emprestimo.app.repository.endereco.EnderecoRepository;
 import com.emprestimo.app.repository.registro.RegistroRepository;
@@ -28,7 +28,7 @@ public class PessoaProcessor {
     private final PessoaRepository pessoaRepository;
     private final ContatoRepository contatoRepository;
     private final EnderecoRepository enderecoRepository;
-    private final BancoRepository bancoRepository;
+    private final DadosBancarioRepository dadosBancarioRepository;
     private final RegistroRepository registroRepository;
 
     public List<PessoaDto> findAll() {
@@ -37,7 +37,7 @@ public class PessoaProcessor {
 
             pessoa.setContatos(contatoRepository.getContatoByIdPessoa(pessoa.getIdpessoa()));
             pessoa.setEnderecos(enderecoRepository.GetEnderecoByIdPessoa(pessoa.getIdpessoa()));
-            pessoa.setBancos(bancoRepository.GetBancoByIdPessoa(pessoa.getIdpessoa()));
+            pessoa.setDadosbancario(dadosBancarioRepository.GetBancoByIdPessoa(pessoa.getIdpessoa()));
             pessoa.setRegistros(registroRepository.GetRegistroByIdPessoa(pessoa.getIdpessoa()));
 
             List<RegistroDto> registros = new ArrayList<>();
@@ -74,10 +74,10 @@ public class PessoaProcessor {
                 enderecoDto.add(end);
             });
 
-            List<BancoDto> bancoDto = new ArrayList<>();
-            pessoa.getBancos().stream().forEach(b -> {
+            List<DadosBancarioDto> dadosBancarioDto = new ArrayList<>();
+            pessoa.getDadosbancario().stream().forEach(b -> {
 
-                var ban = BancoDto.builder()
+                var ban = DadosBancarioDto.builder()
                         .numbanco(b.getNumbanco())
                         .nomebanco(b.getNomebanco())
                         .agencia(b.getAgencia())
@@ -87,7 +87,7 @@ public class PessoaProcessor {
                         .digitoconta(b.getDigitoconta())
                         .statusconta(b.getStatusconta())
                         .build();
-                bancoDto.add(ban);
+                dadosBancarioDto.add(ban);
             });
 
             var p = PessoaDto.builder()
@@ -108,7 +108,7 @@ public class PessoaProcessor {
                     .registros(registros)
                     .contatos(contatos)
                     .enderecos(enderecoDto)
-                    .bancos(bancoDto)
+                    .dadosbancario(dadosBancarioDto)
                     .build();
             pessoas.add(p);
 
@@ -123,7 +123,7 @@ public class PessoaProcessor {
 
         pessoa.setContatos(contatoRepository.getContatoByIdPessoa(pessoa.getIdpessoa()));
         pessoa.setEnderecos(enderecoRepository.GetEnderecoByIdPessoa(pessoa.getIdpessoa()));
-        pessoa.setBancos(bancoRepository.GetBancoByIdPessoa(pessoa.getIdpessoa()));
+        pessoa.setDadosbancario(dadosBancarioRepository.GetBancoByIdPessoa(pessoa.getIdpessoa()));
         pessoa.setRegistros(registroRepository.GetRegistroByIdPessoa(pessoa.getIdpessoa()));
 
         List<RegistroDto> registros = new ArrayList<>();
@@ -159,10 +159,10 @@ public class PessoaProcessor {
             enderecoDto.add(end);
         });
 
-        List<BancoDto> bancoDto = new ArrayList<>();
-        pessoa.getBancos().stream().forEach(b -> {
+        List<DadosBancarioDto> dadosBancarioDto = new ArrayList<>();
+        pessoa.getDadosbancario().stream().forEach(b -> {
 
-            var ban = BancoDto.builder()
+            var ban = DadosBancarioDto.builder()
                     .numbanco(b.getNumbanco())
                     .nomebanco(b.getNomebanco())
                     .agencia(b.getAgencia())
@@ -172,7 +172,7 @@ public class PessoaProcessor {
                     .digitoconta(b.getDigitoconta())
                     .statusconta(b.getStatusconta())
                     .build();
-            bancoDto.add(ban);
+            dadosBancarioDto.add(ban);
         });
 
         var pessoadto = PessoaDto.builder()
@@ -193,7 +193,7 @@ public class PessoaProcessor {
                 .registros(registros)
                 .contatos(contatosDto)
                 .enderecos(enderecoDto)
-                .bancos(bancoDto)
+                .dadosbancario(dadosBancarioDto)
                 .build();
 
         return pessoadto;
@@ -204,7 +204,7 @@ public class PessoaProcessor {
 
         pessoa.setContatos(contatoRepository.getContatoByIdPessoa(pessoa.getIdpessoa()));
         pessoa.setEnderecos(enderecoRepository.GetEnderecoByIdPessoa(pessoa.getIdpessoa()));
-        pessoa.setBancos(bancoRepository.GetBancoByIdPessoa(pessoa.getIdpessoa()));
+        pessoa.setDadosbancario(dadosBancarioRepository.GetBancoByIdPessoa(pessoa.getIdpessoa()));
         pessoa.setRegistros(registroRepository.GetRegistroByIdPessoa(pessoa.getIdpessoa()));
 
         List<RegistroDto> registros = new ArrayList<>();
@@ -241,10 +241,10 @@ public class PessoaProcessor {
             enderecoDto.add(end);
         });
 
-        List<BancoDto> bancoDto = new ArrayList<>();
-        pessoa.getBancos().stream().forEach(b -> {
+        List<DadosBancarioDto> dadosBancarioDto = new ArrayList<>();
+        pessoa.getDadosbancario().stream().forEach(b -> {
 
-            var ban = BancoDto.builder()
+            var ban = DadosBancarioDto.builder()
                     .numbanco(b.getNumbanco())
                     .nomebanco(b.getNomebanco())
                     .agencia(b.getAgencia())
@@ -254,7 +254,7 @@ public class PessoaProcessor {
                     .digitoconta(b.getDigitoconta())
                     .statusconta(b.getStatusconta())
                     .build();
-            bancoDto.add(ban);
+            dadosBancarioDto.add(ban);
         });
 
 
@@ -276,7 +276,7 @@ public class PessoaProcessor {
                 .registros(registros)
                 .contatos(contatosDto)
                 .enderecos(enderecoDto)
-                .bancos(bancoDto)
+                .dadosbancario(dadosBancarioDto)
                 .build();
         return pessoadto;
     }
@@ -317,9 +317,9 @@ public class PessoaProcessor {
             end.add(e);
         });
 
-        List<Banco> banco = new ArrayList<>();
-        pessoaDto.getBancos().forEach(b -> {
-            var ban = Banco.builder()
+        List<DadosBancario> dadosBancario = new ArrayList<>();
+        pessoaDto.getDadosbancario().forEach(b -> {
+            var ban = DadosBancario.builder()
                     .numbanco(b.getNumbanco())
                     .nomebanco(b.getNomebanco())
                     .agencia(b.getAgencia())
@@ -329,7 +329,7 @@ public class PessoaProcessor {
                     .digitoconta(b.getDigitoconta())
                     .statusconta(b.getStatusconta())
                     .build();
-            banco.add(ban);
+            dadosBancario.add(ban);
         });
 
         var pessoa = Pessoa.builder()
@@ -350,7 +350,7 @@ public class PessoaProcessor {
                 .registros(registros)
                 .contatos(contatos)
                 .enderecos(end)
-                .bancos(banco)
+                .dadosbancario(dadosBancario)
                 .build();
 
           pessoaRepository.save(pessoa);

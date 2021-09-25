@@ -1,6 +1,6 @@
 package com.emprestimo.app.repository.rowMappers;
 
-import com.emprestimo.app.model.banco.Banco;
+import com.emprestimo.app.model.dadosbancario.DadosBancario;
 import org.springframework.jdbc.core.RowMapper;
 
 import javax.inject.Named;
@@ -8,13 +8,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 @Named
-public class RowMapperBanco implements RowMapper<Banco> {
+public class RowMapperBanco implements RowMapper<DadosBancario> {
 
     @Override
-    public Banco mapRow(ResultSet rs, int rowNum) throws SQLException {
+    public DadosBancario mapRow(ResultSet rs, int rowNum) throws SQLException {
 
-        return Banco.builder()
-                .idbanco(rs.getLong("idbanco"))
+        return DadosBancario.builder()
+                .iddadosbancario(rs.getLong("iddadosbancario"))
                 .idpessoa(rs.getLong("idpessoa"))
                 .numbanco(rs.getInt("numbanco"))
                 .nomebanco(rs.getString("nomebanco"))

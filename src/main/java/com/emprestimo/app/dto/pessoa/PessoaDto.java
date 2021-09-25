@@ -1,6 +1,6 @@
-package com.emprestimo.app.dto.cliente;
+package com.emprestimo.app.dto.pessoa;
 
-import com.emprestimo.app.dto.banco.BancoDto;
+import com.emprestimo.app.dto.dadosbancario.DadosBancarioDto;
 import com.emprestimo.app.dto.contato.ContatoDto;
 import com.emprestimo.app.dto.endereco.EnderecoDto;
 import com.emprestimo.app.dto.registro.RegistroDto;
@@ -33,7 +33,7 @@ public class PessoaDto {
 
     private List<ContatoDto> contatos;
     private List<EnderecoDto> enderecos;
-    private List<BancoDto> bancos;
+    private List<DadosBancarioDto> dadosbancario;
     private List<RegistroDto> registros;
 
 }

@@ -1,9 +1,8 @@
-package com.emprestimo.app.repository.cliente;
+package com.emprestimo.app.repository.pessoa;
 
 import com.emprestimo.app.Script.*;
 import com.emprestimo.app.config.DataBaseConfig;
-import com.emprestimo.app.dto.registro.RegistroDto;
-import com.emprestimo.app.model.cliente.Pessoa;
+import com.emprestimo.app.model.pessoa.Pessoa;
 import com.emprestimo.app.repository.rowMappers.RowMapperPessoa;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -79,9 +78,9 @@ public class PessoaRepository {
         }, keyHolder);
 
 
-            pessoa.getBancos().forEach(banco->
+            pessoa.getDadosbancario().forEach(banco->
             jdbcTemplate.update(connection -> {
-            PreparedStatement bc = connection.prepareStatement(BancoSQL.SQL_INSERT_BANCO.getValue());
+            PreparedStatement bc = connection.prepareStatement(DadosBancarioSQL.SQL_INSERT_DADOSBANCARIO.getValue());
                     bc.setInt(1,banco.getNumbanco());
                     bc.setString(2, banco.getNomebanco());
                     bc.setLong(3, banco.getAgencia());

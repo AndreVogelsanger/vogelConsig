@@ -8,9 +8,9 @@ import lombok.*;
 @AllArgsConstructor
 @Getter
 @Setter
-public class CodigoBeneficioDto {
+public class EspecieBeneficioDto {
 
-    private Long idcodigo;
+    private Long idespecie;
     private Long codigo;
     private String especie;
     private String utilizacao;

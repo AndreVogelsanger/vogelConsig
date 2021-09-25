@@ -9,9 +9,9 @@ import lombok.*;
 @Builder
 @Getter
 @Setter
-public class Produto {
+public class Empregador {
 
-    private Long idproduto;
-    private String produto;
+    private Long idempregador;
+    private String empregador;
 
 }

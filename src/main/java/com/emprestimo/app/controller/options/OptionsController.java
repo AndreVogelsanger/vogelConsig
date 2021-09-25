@@ -1,9 +1,9 @@
 package com.emprestimo.app.controller.options;
 
-import com.emprestimo.app.dto.options.CodigoBeneficioDto;
-import com.emprestimo.app.dto.options.ProdutoDto;
-import com.emprestimo.app.processor.options.CodigoBeneficioProcessor;
-import com.emprestimo.app.processor.options.ProdutoProcessor;
+import com.emprestimo.app.dto.options.EspecieBeneficioDto;
+import com.emprestimo.app.dto.options.EmpregadorDto;
+import com.emprestimo.app.processor.options.EspecieBeneficioProcessor;
+import com.emprestimo.app.processor.options.EmpregadorProcessor;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,18 +18,19 @@ import java.util.List;
 public class OptionsController {
 
 
-    private final CodigoBeneficioProcessor codigoBeneficioProcessor;
-    private final ProdutoProcessor produtoProcessor;
+    private final EspecieBeneficioProcessor especieBeneficioProcessor;
+    private final EmpregadorProcessor empregadorProcessor;
 
-    @GetMapping("ListaCodigoBeneficio")
-    public List<CodigoBeneficioDto> GetAllCodigoBeneficio(){
-        return codigoBeneficioProcessor.getAllCodigoBeneficio();
+    @GetMapping("ListaEspecieBeneficio")
+    public List<EspecieBeneficioDto> GetAllEspecieBeneficio(){
+        return especieBeneficioProcessor.getAllCodigoBeneficio();
     }
 
 
-    @GetMapping("Produtos")
-    public List<ProdutoDto> GetAllProduto(){
-        return produtoProcessor.GetAllProduto();
+    @GetMapping("Empregador")
+
+    public List<EmpregadorDto> GetAllEmpregador(){
+        return empregadorProcessor.GetAllEmpregador();
     }
 
 }

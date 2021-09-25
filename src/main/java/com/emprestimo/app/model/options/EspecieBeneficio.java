@@ -1,6 +1,5 @@
 package com.emprestimo.app.model.options;
 
-import com.emprestimo.app.dto.options.CodigoBeneficioDto;
 import lombok.*;
 
 @Data
@@ -9,9 +8,9 @@ import lombok.*;
 @NoArgsConstructor
 @Getter
 @Setter
-public class CodigoBeneficio {
+public class EspecieBeneficio {
 
-    private Long idcodigo;
+    private Long idespecie;
     private Long codigo;
     private String especie;
     private String utilizacao;

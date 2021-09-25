@@ -1,4 +1,4 @@
-package com.emprestimo.app.dto.banco;
+package com.emprestimo.app.dto.dadosbancario;
 
 
 import lombok.AllArgsConstructor;
@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class BancoDto {
+public class DadosBancarioDto {
 
-    private Long idbanco;
+    private Long iddadosbancario;
     private Integer numbanco;
     private String nomebanco;
     private Long agencia;

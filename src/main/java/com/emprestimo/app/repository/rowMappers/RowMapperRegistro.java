@@ -1,6 +1,5 @@
 package com.emprestimo.app.repository.rowMappers;
 
-import com.emprestimo.app.model.cliente.Pessoa;
 import com.emprestimo.app.model.registro.Registro;
 import org.springframework.jdbc.core.RowMapper;
 

@@ -1,7 +1,7 @@
-package com.emprestimo.app.controller.cliente;
+package com.emprestimo.app.controller.pessoa;
 
-import com.emprestimo.app.dto.cliente.PessoaDto;
-import com.emprestimo.app.processor.cliente.PessoaProcessor;
+import com.emprestimo.app.dto.pessoa.PessoaDto;
+import com.emprestimo.app.processor.pessoa.PessoaProcessor;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

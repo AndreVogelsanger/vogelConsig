@@ -1,4 +1,4 @@
-package com.emprestimo.app.model.banco;
+package com.emprestimo.app.model.dadosbancario;
 
 
 import lombok.AllArgsConstructor;
@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Banco {
+public class DadosBancario {
 
-    private Long idbanco;
+    private Long iddadosbancario;
     private Long idpessoa;
     private int numbanco;
     private String nomebanco;
