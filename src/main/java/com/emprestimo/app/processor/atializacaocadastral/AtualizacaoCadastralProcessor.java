@@ -4,12 +4,15 @@ package com.emprestimo.app.processor.atializacaocadastral;
 import com.emprestimo.app.dto.dadosbancario.DadosBancarioDto;
 import com.emprestimo.app.dto.contato.ContatoDto;
 import com.emprestimo.app.dto.endereco.EnderecoDto;
+import com.emprestimo.app.dto.options.EmpregadorDto;
 import com.emprestimo.app.dto.pessoa.PessoaDto;
 import com.emprestimo.app.model.dadosbancario.DadosBancario;
 import com.emprestimo.app.model.contato.Contato;
 import com.emprestimo.app.model.endereco.Endereco;
+import com.emprestimo.app.model.options.Empregador;
 import com.emprestimo.app.model.pessoa.Pessoa;
 import com.emprestimo.app.repository.dadosbancario.DadosBancarioRepository;
+import com.emprestimo.app.repository.options.EmpregadorRepository;
 import com.emprestimo.app.repository.pessoa.PessoaRepository;
 import com.emprestimo.app.repository.contato.ContatoRepository;
 import com.emprestimo.app.repository.endereco.EnderecoRepository;
@@ -27,6 +30,7 @@ public class AtualizacaoCadastralProcessor {
     private final DadosBancarioRepository dadosBancarioRepository;
     private final ContatoRepository contatoRepository;
     private final EnderecoRepository enderecoRepository;
+    private final EmpregadorRepository empregadorRepository;
 
 
     public void updateCliente(PessoaDto pessoaDto) {
@@ -52,7 +56,7 @@ public class AtualizacaoCadastralProcessor {
 
     public void updateBanco(List<DadosBancarioDto> dadosBancarioDto) {
 
-        dadosBancarioDto.stream().forEach(bancos->{
+        dadosBancarioDto.forEach(bancos->{
         var banco = DadosBancario.builder()
                 .iddadosbancario(bancos.getIddadosbancario())
                 .numbanco(bancos.getNumbanco())
@@ -70,12 +74,12 @@ public class AtualizacaoCadastralProcessor {
 
     public void updateContato(List<ContatoDto> contatoDto){
 
-        contatoDto.stream().forEach(contatos -> {
+        contatoDto.forEach(contatos -> {
             var ctt = Contato.builder()
                     .idcontato(contatos.getIdcontato())
                     .numero(contatos.getNumero())
                     .tipocontato(contatos.getTipocontato())
-                    .decricao(contatos.getDecricao())
+                    .descricao(contatos.getDescricao())
                     .build();
             contatoRepository.updateContato(ctt);
         });
@@ -84,7 +88,7 @@ public class AtualizacaoCadastralProcessor {
 
     public void updateEndereco(List<EnderecoDto> enderecoDto) {
 
-        enderecoDto.stream().forEach(enderecos -> {
+        enderecoDto.forEach(enderecos -> {
             var endereco = Endereco.builder()
                     .idendereco(enderecos.getIdendereco())
                     .logradouro(enderecos.getLogradouro())
@@ -98,6 +102,14 @@ public class AtualizacaoCadastralProcessor {
                     .build();
             enderecoRepository.updateEndereco(endereco);
         });
+    }
+
+    public void updateEmpregador (EmpregadorDto empregadorDto){
+        var empregador = Empregador.builder()
+                .empregador(empregadorDto.getEmpregador())
+                .idempregador(empregadorDto.getIdempregador())
+                .build();
+        empregadorRepository.updateEmpregador(empregador);
     }
 
 }

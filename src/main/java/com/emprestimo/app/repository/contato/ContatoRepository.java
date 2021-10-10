@@ -34,7 +34,7 @@ public class ContatoRepository {
             PreparedStatement c = connection.prepareStatement(ContatoSQL.SQL_UPDATE_CONTATO.getValue());
             c.setString(1, contato.getNumero());
             c.setString(2, contato.getTipocontato());
-            c.setString(3, contato.getDecricao());
+            c.setString(3, contato.getDescricao());
             c.setLong(4, contato.getIdcontato());
             return c;
         });

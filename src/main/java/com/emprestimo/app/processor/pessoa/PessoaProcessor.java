@@ -11,6 +11,7 @@ import com.emprestimo.app.model.endereco.Endereco;
 import com.emprestimo.app.model.pessoa.Pessoa;
 import com.emprestimo.app.model.registro.Registro;
 import com.emprestimo.app.repository.dadosbancario.DadosBancarioRepository;
+import com.emprestimo.app.repository.options.EmpregadorRepository;
 import com.emprestimo.app.repository.pessoa.PessoaRepository;
 import com.emprestimo.app.repository.contato.ContatoRepository;
 import com.emprestimo.app.repository.endereco.EnderecoRepository;
@@ -30,8 +31,10 @@ public class PessoaProcessor {
     private final EnderecoRepository enderecoRepository;
     private final DadosBancarioRepository dadosBancarioRepository;
     private final RegistroRepository registroRepository;
+    private final EmpregadorRepository empregadorRepository;
 
     public List<PessoaDto> findAll() {
+
         List<PessoaDto> pessoas = new ArrayList<>();
         pessoaRepository.findAll().forEach(pessoa -> {
 
@@ -54,7 +57,7 @@ public class PessoaProcessor {
                 var ctt = ContatoDto.builder()
                         .numero(contato.getNumero())
                         .tipocontato(contato.getTipocontato())
-                        .decricao(contato.getDecricao())
+                        .descricao(contato.getDescricao())
                         .build();
                 contatos.add(ctt);
             });
@@ -139,7 +142,7 @@ public class PessoaProcessor {
             var ctt = ContatoDto.builder()
                     .numero(contato.getNumero())
                     .tipocontato(contato.getTipocontato())
-                    .decricao(contato.getDecricao())
+                    .descricao(contato.getDescricao())
                     .build();
             contatosDto.add(ctt);
         });
@@ -221,7 +224,7 @@ public class PessoaProcessor {
             var ctt = ContatoDto.builder()
                     .numero(contato.getNumero())
                     .tipocontato(contato.getTipocontato())
-                    .decricao(contato.getDecricao())
+                    .descricao(contato.getDescricao())
                     .build();
             contatosDto.add(ctt);
         });
@@ -242,7 +245,7 @@ public class PessoaProcessor {
         });
 
         List<DadosBancarioDto> dadosBancarioDto = new ArrayList<>();
-        pessoa.getDadosbancario().stream().forEach(b -> {
+        pessoa.getDadosbancario().forEach(b -> {
 
             var ban = DadosBancarioDto.builder()
                     .numbanco(b.getNumbanco())
@@ -297,7 +300,7 @@ public class PessoaProcessor {
             var ctt = Contato.builder()
                     .numero(contato.getNumero())
                     .tipocontato(contato.getTipocontato())
-                    .decricao(contato.getDecricao())
+                    .descricao(contato.getDescricao())
                     .build();
             contatos.add(ctt);
         });
@@ -331,6 +334,7 @@ public class PessoaProcessor {
                     .build();
             dadosBancario.add(ban);
         });
+
 
         var pessoa = Pessoa.builder()
                 .nome(pessoaDto.getNome())

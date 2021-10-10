@@ -1,7 +1,9 @@
 package com.emprestimo.app.repository.pessoa;
 
 import com.emprestimo.app.Script.*;
+import com.emprestimo.app.Script.options.EmpregadorSQL;
 import com.emprestimo.app.config.DataBaseConfig;
+import com.emprestimo.app.dto.options.EmpregadorDto;
 import com.emprestimo.app.model.pessoa.Pessoa;
 import com.emprestimo.app.repository.rowMappers.RowMapperPessoa;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -34,6 +36,12 @@ public class PessoaRepository {
         List<Pessoa> pessoa = jdbcTemplate.query(PessoaSQL.SQL_GET_LIST_PESSOAS.getValue(), rowMapperPessoa);
         return pessoa;
     }
+
+    public List<Pessoa> findByPessoaPorIdEmpregador(EmpregadorDto  empregadorDto){
+        List<Pessoa> pessoa = jdbcTemplate.query(PessoaSQL.SQL_GETPESSOAEMPREGADOR.getValue(), rowMapperPessoa,new Object[]{empregadorDto.getIdempregador()});
+        return pessoa;
+    }
+
 
     public Pessoa findByCpf(String cpf) {
         try {
@@ -78,6 +86,8 @@ public class PessoaRepository {
         }, keyHolder);
 
 
+
+
             pessoa.getDadosbancario().forEach(banco->
             jdbcTemplate.update(connection -> {
             PreparedStatement bc = connection.prepareStatement(DadosBancarioSQL.SQL_INSERT_DADOSBANCARIO.getValue());
@@ -98,7 +108,7 @@ public class PessoaRepository {
                 PreparedStatement ct = connection.prepareStatement(ContatoSQL.SQL_INSERT_CONTATO.getValue());
                 ct.setString(1, contato.getNumero());
                 ct.setString(2, contato.getTipocontato());
-                ct.setString(3, contato.getDecricao());
+                ct.setString(3, contato.getDescricao());
                 ct.setLong(4, keyHolder.getKey().longValue());
                 return ct;
             }));
@@ -129,7 +139,6 @@ public class PessoaRepository {
             }));
 
     }
-
 
     public Pessoa updateCliente(Pessoa pessoa) {
         jdbcTemplate.update(PessoaSQL.SQL_UPDATE_PESSOA.getValue(),

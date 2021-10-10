@@ -3,6 +3,7 @@ package com.emprestimo.app.controller.atualizacaocadastral;
 import com.emprestimo.app.dto.dadosbancario.DadosBancarioDto;
 import com.emprestimo.app.dto.contato.ContatoDto;
 import com.emprestimo.app.dto.endereco.EnderecoDto;
+import com.emprestimo.app.dto.options.EmpregadorDto;
 import com.emprestimo.app.dto.pessoa.PessoaDto;
 import com.emprestimo.app.processor.atializacaocadastral.AtualizacaoCadastralProcessor;
 import com.emprestimo.app.processor.pessoa.PessoaProcessor;
@@ -46,5 +47,10 @@ public class AtualizacaoCadastralController {
         atualizacaoCadastralProcessor.updateEndereco(enderecoDto);
     }
 
+    @PutMapping("Empregador")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updateEmpregador(@RequestBody EmpregadorDto empregadorDto){
+        atualizacaoCadastralProcessor.updateEmpregador(empregadorDto);
+    }
 
 }

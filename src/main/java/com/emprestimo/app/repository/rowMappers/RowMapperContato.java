@@ -17,7 +17,7 @@ public class RowMapperContato implements RowMapper<Contato> {
             .idpessoa(rs.getLong("idpessoa"))
             .numero(rs.getString("numero"))
             .tipocontato(rs.getString("tipocontato"))
-            .decricao(rs.getString("descricao"))
+            .descricao(rs.getString("descricao"))
             .build();
 
     }

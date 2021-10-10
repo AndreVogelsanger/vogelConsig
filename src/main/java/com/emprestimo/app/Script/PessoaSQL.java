@@ -15,6 +15,10 @@ public enum PessoaSQL{
 
     SQL_GET_IDPESSOA ("select IDPESSOA from Pessoa WHERE CPF = ?"),
 
+    SQL_GETPESSOAEMPREGADOR("select * from pessoa p " +
+            "inner join pessoaempregadores pe on p.idpessoa = pe.idpessoa " +
+            "where pe.idempregador = ?"),
+
     SQL_INSERT_PESSOA("INSERT INTO PESSOA" +
             " (NOME,CPF,RG,DATAEMISSAORG,UFRG,RENDA,DATANASCIMENTO,NATURALIDAE,ESTADONASCIMENTO,ESTADOCIVIL,NOMEPAI,NOMEMAE,EMAIL,INDICACAO)" +
             " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)"),

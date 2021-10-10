@@ -15,6 +15,6 @@ public class Contato {
     private Long idpessoa;
     private String numero;
     private String tipocontato;
-    private String decricao;
+    private String descricao;
 
 }
