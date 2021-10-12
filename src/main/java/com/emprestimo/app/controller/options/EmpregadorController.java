@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor(onConstructor = @__(@Inject))
 @RequestMapping("/v1/Options/Empregador")
-public class OptionEmpregador {
+public class EmpregadorController {
 
     private final EmpregadorProcessor empregadorProcessor;
 
@@ -40,5 +40,7 @@ public class OptionEmpregador {
         var dtoidempregador = EmpregadorDto.builder().idempregador(id).build();
         empregadorProcessor.deleteEmpregador(dtoidempregador);
         }
+
+
 
 }

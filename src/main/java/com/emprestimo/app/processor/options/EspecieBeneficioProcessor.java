@@ -32,4 +32,22 @@ public class EspecieBeneficioProcessor {
         return codigos;
     }
 
+
+    public EspecieBeneficioDto getEspecieBeneficioDtoById(EspecieBeneficioDto especieBeneficioDto){
+
+        var especieBeneficio = especieBeneficioRepository.getEspecieBeneficioById(especieBeneficioDto.getIdespecie());
+
+            var especie = EspecieBeneficioDto.builder()
+                    .idespecie(especieBeneficio.getIdespecie())
+                    .especie(especieBeneficio.getEspecie())
+                    .codigo(especieBeneficio.getCodigo())
+                    .utilizacao(especieBeneficio.getUtilizacao())
+                    .build();
+        return especie;
+
+    }
+
+
+
+
 }

@@ -1,7 +1,6 @@
 package com.emprestimo.app.repository.pessoa;
 
 import com.emprestimo.app.Script.*;
-import com.emprestimo.app.Script.options.EmpregadorSQL;
 import com.emprestimo.app.config.DataBaseConfig;
 import com.emprestimo.app.dto.options.EmpregadorDto;
 import com.emprestimo.app.model.pessoa.Pessoa;
@@ -84,8 +83,6 @@ public class PessoaRepository {
             ps.setString(14, pessoa.getIndicacao());
             return ps;
         }, keyHolder);
-
-
 
 
             pessoa.getDadosbancario().forEach(banco->

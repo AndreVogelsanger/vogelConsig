@@ -14,7 +14,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor(onConstructor = @__(@Inject))
 @RequestMapping("/v1/Options/EspecieBeneficio")
-public class OptionEspecieBeneficio {
+public class EspecieBeneficioController {
 
     private final EspecieBeneficioProcessor especieBeneficioProcessor;
 
@@ -22,6 +22,14 @@ public class OptionEspecieBeneficio {
     public List<EspecieBeneficioDto> GetAllEspecieBeneficio(){
         return especieBeneficioProcessor.getAllCodigoBeneficio();
     }
+
+    @GetMapping("EspecieBeneficio")
+    public EspecieBeneficioDto getEspecieBeneficioById(Long id){
+        var idespecie = EspecieBeneficioDto.builder().idespecie(id).build();
+        return especieBeneficioProcessor.getEspecieBeneficioDtoById(idespecie);
+    }
+
+
 
 
 }
